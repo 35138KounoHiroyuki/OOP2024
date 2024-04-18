@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace DistanceConverter {
-    internal class Program {
+    public class Program {
         static void Main(string[] args) {
 
             if (args.Length >= 1 && args[0] == "-tom") {
