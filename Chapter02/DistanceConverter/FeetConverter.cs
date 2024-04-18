@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DistanceConverter {
-    internal class FeetConverter {
-        public double FrmoMeter(double meter) {
+    public static class FeetConverter {
+        public static double FrmoMeter(double meter) {
             return meter / 0.3048;
         }
-        public double ToMeter(double feet) {
+        public static double ToMeter(double feet) {
             return feet * 0.3048;
         }
     }

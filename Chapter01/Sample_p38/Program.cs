@@ -4,9 +4,4 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sample_p38 {
-    public class Program {
-        static void Main(string[] args) {
-        }
-    }
-}
+
