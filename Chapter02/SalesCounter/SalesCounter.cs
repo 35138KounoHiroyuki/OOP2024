@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SalesCounter {
     public class SalesCounter {
-        private List<Sale> _sales;
+        private IEnumerable _sales;
 
         //コンストラクタ
         public SalesCounter(string filePass) {       
@@ -15,7 +16,7 @@ namespace SalesCounter {
 
         }
         //売上データを読み込みSaleオブジェクトのリストを返す
-       private static List<Sale> ReadSales(string filePath) {
+       private static IEnumerable ReadSales(string filePath) {
             List<Sale> sales = new List<Sale>();
             string[] lines = File.ReadAllLines(filePath);
             foreach (string line in lines) {
@@ -34,7 +35,7 @@ namespace SalesCounter {
 
 
         //店舗別売上を求める
-        public Dictionary<string, int> GetPerStoreSales() {
+        public IDictionary<string, int> GetPerStoreSales() {
 
             Dictionary<string, int> dict = new Dictionary<string, int>();
             foreach (Sale sale in _sales) {
