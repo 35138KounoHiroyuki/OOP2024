@@ -1,8 +1,6 @@
 namespace BallApp {
     public partial class Form1 : Form {
-        Obj Ball;
-
-       
+        Obj Ball;  
         PictureBox pb;
         //コンストラクタ
         public Form1() {
@@ -29,29 +27,27 @@ namespace BallApp {
             //サッカーボール出現
             
                 pb = new PictureBox();// 画像を表示するコントロール
-                pb.Size = new Size(50, 50);
+
 
             if (e.Button == MouseButtons.Left) {
                 Ball = new SoccerBall(e.X, e.Y);
+                pb.Size = new Size(50, 50);
 
-                pb.Image = Ball.Image;
-                pb.Location = new Point((int)Ball.PosX, (int)Ball.PosY);
-                pb.SizeMode = PictureBoxSizeMode.StretchImage;
-                pb.Parent = this;
-                timer1.Start();
+
             } else if (e.Button == MouseButtons.Right) {     //テニスボール出現
-                pb.Size = new Size(30, 30);
+               
                 Ball = new TennisBall(e.Location.X, e.Location.Y);
+                pb.Size = new Size(30, 30);
+            }
+               
 
                 pb.Image = Ball.Image;
                 pb.Location = new Point((int)Ball.PosX, (int)Ball.PosY);
                 pb.SizeMode = PictureBoxSizeMode.StretchImage;
                 pb.Parent = this;
-
-
                 timer1.Start();
             }
         }
 
     }
-}
+
