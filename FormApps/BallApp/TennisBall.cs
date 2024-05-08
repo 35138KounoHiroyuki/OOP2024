@@ -5,17 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BallApp {
-    internal class SoccerBall : Obj {
+    internal class TennisBall : Obj {
 
-        public SoccerBall(double xp, double yp)
-            : base(xp -25, yp-25, @"Picture\soccer_ball.png") {
+        public TennisBall(double xp, double yp)
+            : base(xp - 15, yp - 15, @"Picture\tennis_ball.png") {
 
             MoveX = 10;//移動量設定
             MoveY = 10;
         }
 
         public override bool Move() {
-            if(PosX > 750 || PosX < 0) {
+            if (PosX > 750 || PosX < 0) {
                 MoveX = -MoveX;
             }
             if (PosY > 500 || PosY < 0) {
@@ -25,7 +25,10 @@ namespace BallApp {
             PosY += MoveY;
 
             return true;
-        
+
         }
     }
 }
+
+
+

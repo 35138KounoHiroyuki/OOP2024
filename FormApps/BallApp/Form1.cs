@@ -1,6 +1,8 @@
 namespace BallApp {
     public partial class Form1 : Form {
-        SoccerBall soccerBall;
+        Obj Ball;
+
+       
         PictureBox pb;
         //コンストラクタ
         public Form1() {
@@ -12,27 +14,43 @@ namespace BallApp {
         //フォームが最初にロードされるとき一度だけ実行される
         private void Form1_Load(object sender, EventArgs e) {
 
-
         }
 
         private void timer1_Tick(object sender, EventArgs e) {
+            
+                Ball.Move();
+            pb.Location = new Point((int)Ball.PosX, (int)Ball.PosY);
 
-            soccerBall.Move();
-            pb.Location = new Point((int)soccerBall.PosX, (int)soccerBall.PosY);
-
+            
         }
+       
 
-        private void Form1_MouseClick(object sender, MouseEventArgs e) {
-            pb = new PictureBox();// 画像を表示するコントロール
-            pb.Size = new Size(50, 50);
-            soccerBall = new SoccerBall(e.X,e.Y);
+            private void Form1_MouseClick(object sender, MouseEventArgs e) {
+            //サッカーボール出現
+            
+                pb = new PictureBox();// 画像を表示するコントロール
+                pb.Size = new Size(50, 50);
 
-            pb.Image = soccerBall.Image;
-            pb.Location = new Point((int)soccerBall.PosX, (int)soccerBall.PosY);
-            pb.SizeMode = PictureBoxSizeMode.StretchImage;
-            pb.Parent = this;
+            if (e.Button == MouseButtons.Left) {
+                Ball = new SoccerBall(e.X, e.Y);
 
-            timer1.Start();
+                pb.Image = Ball.Image;
+                pb.Location = new Point((int)Ball.PosX, (int)Ball.PosY);
+                pb.SizeMode = PictureBoxSizeMode.StretchImage;
+                pb.Parent = this;
+                timer1.Start();
+            } else if (e.Button == MouseButtons.Right) {     //テニスボール出現
+                pb.Size = new Size(30, 30);
+                Ball = new TennisBall(e.Location.X, e.Location.Y);
+
+                pb.Image = Ball.Image;
+                pb.Location = new Point((int)Ball.PosX, (int)Ball.PosY);
+                pb.SizeMode = PictureBoxSizeMode.StretchImage;
+                pb.Parent = this;
+
+
+                timer1.Start();
+            }
         }
 
     }
