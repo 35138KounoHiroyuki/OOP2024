@@ -5,8 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Exercise1 {
-    internal class Program {
+    public class Program {
         static void Main(string[] args) {
+            var songs = new Song[] {
+        
+
+
+
+            };
            
 
 
