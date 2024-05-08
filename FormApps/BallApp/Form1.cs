@@ -1,7 +1,14 @@
+using System.Windows.Forms.ComponentModel.Com2Interop;
+
 namespace BallApp {
     public partial class Form1 : Form {
-        Obj Ball;  
-        PictureBox pb;
+
+
+        //リストコレクション
+        private List<Obj> balls = new List<Obj>();//ボールインスタンス格納用
+        private List<PictureBox> pbs = new List<PictureBox>();//表示用
+
+
         //コンストラクタ
         public Form1() {
             InitializeComponent();
@@ -15,39 +22,43 @@ namespace BallApp {
         }
 
         private void timer1_Tick(object sender, EventArgs e) {
-            
-                Ball.Move();
-            pb.Location = new Point((int)Ball.PosX, (int)Ball.PosY);
-
-            
+            // ball.Move();
+            //pb.Location = new Point((int)ball.PosX, (int)ball.PosY);
+            for (int i = 0; i < balls.Count; i++){
+                balls[i].Move();
+                pbs[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY);
+            }
         }
-       
-
-            private void Form1_MouseClick(object sender, MouseEventArgs e) {
-            //サッカーボール出現
-            
-                pb = new PictureBox();// 画像を表示するコントロール
 
 
-            if (e.Button == MouseButtons.Left) {
-                Ball = new SoccerBall(e.X, e.Y);
+        private void Form1_MouseClick(object sender, MouseEventArgs e) {
+
+
+            PictureBox pb = new PictureBox(); // 画像を表示するコントロール
+            Obj ball = null;
+
+            if (e.Button == MouseButtons.Left) {　　//サッカーボール出現
+                ball = new SoccerBall(e.X, e.Y);
                 pb.Size = new Size(50, 50);
 
 
             } else if (e.Button == MouseButtons.Right) {     //テニスボール出現
-               
-                Ball = new TennisBall(e.Location.X, e.Location.Y);
+
+                ball = new TennisBall(e.Location.X, e.Location.Y);
                 pb.Size = new Size(30, 30);
             }
-               
 
-                pb.Image = Ball.Image;
-                pb.Location = new Point((int)Ball.PosX, (int)Ball.PosY);
-                pb.SizeMode = PictureBoxSizeMode.StretchImage;
-                pb.Parent = this;
-                timer1.Start();
-            }
+
+            pb.Image = ball.Image;
+            pb.Location = new Point((int)ball.PosX, (int)ball.PosY);
+            pb.SizeMode = PictureBoxSizeMode.StretchImage;
+            pb.Parent = this;
+            timer1.Start();
+
+            balls.Add(ball);
+            pbs.Add(pb);
         }
-
     }
+}
+
 
