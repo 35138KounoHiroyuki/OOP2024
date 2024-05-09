@@ -11,7 +11,7 @@ namespace BallApp {
         public double PosY { get; set; }
         public double MoveX { get; set; }
         public double MoveY { get; set; }
-
+        
         //コンストラクタ
         public Obj(double posX, double posY,string path) {
             PosX = posX;
