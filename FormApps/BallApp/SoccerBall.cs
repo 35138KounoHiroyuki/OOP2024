@@ -26,11 +26,19 @@ namespace BallApp {
             if (PosY > 500 || PosY < 0) {
                 MoveY = -MoveY;
             }
+            
+
+
+
             PosX += MoveX;
             PosY += MoveY;
 
             return true;
         
+        }
+
+        public override bool Move(Keys direction) {
+            return true;
         }
     }
 }
