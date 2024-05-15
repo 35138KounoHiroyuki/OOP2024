@@ -9,15 +9,29 @@ namespace Section01 {
     internal class Program {
         static void Main(string[] args) {
             var names = new List<string> {
- 　　　　　　  "Tokyo", "New Delhi", "Bangkok", "London",
+   "Tokyo", "New Delhi", "Bangkok", "London",
                 "Paris", "Berlin", "Canberra", "Hong Kong",
 };
-            IEnumerable<string> query = names.Where(s => s.Contains (' '))
-                                             .Select(s => s.ToUpper());
-            Console.WriteLine(query);                     
-           foreach(string s in query)
-                Console.WriteLine(s);
+            // IEnumerable<string> query = names.Where(s => s.Contains (' '))
+            //                              .Select(s => s.ToUpper());
+            //Console.WriteLine(query);                     
+            //foreach(string s in query)
+            //   Console.WriteLine(s);
+
+            var query = names.Where(s => s.Length <= 5).ToArray();
+                              
+            foreach (var item in query) 
+                Console.WriteLine(item);
+
+                Console.WriteLine("---------");
+
+                names[0] = "Osaka";
+                foreach (var item in query)
+                    Console.WriteLine(item);
+            }
         }
+
     }
-}
+
+
 
