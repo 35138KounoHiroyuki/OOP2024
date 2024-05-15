@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace Exercise01 {
 
             // 3.1.1
             Exercise1_1(numbers);
-            Console.WriteLine();
+            Console.WriteLine("----");
 
             // 3.1.2
             Exercise1_2(numbers);
@@ -27,20 +28,25 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_1(List<int> numbers) {
-            IEnumerable<int> query = numbers.Where(s => s % 8 == 0 || s % 9 == 0);
-                                            
+            var exsits = numbers.Exists(s => s % 8 == 0 || s % 9 == 0);
+            Console.WriteLine(exsits);                           
         }
 
         private static void Exercise1_2(List<int> numbers) {
-            
+         numbers.ForEach(s => Console.WriteLine(s/0.2));
+                                             
         }
 
         private static void Exercise1_3(List<int> numbers) {
-            
+            var number = numbers.Exists(s => s >= 50);
+            Console.WriteLine(number);
         }
 
         private static void Exercise1_4(List<int> numbers) {
-            
+            IEnumerable<int>numbres  = numbers.Select(s => s*2);
+           
+            foreach (int s in numbres)
+                Console.WriteLine(s);
         }
     }
 }
