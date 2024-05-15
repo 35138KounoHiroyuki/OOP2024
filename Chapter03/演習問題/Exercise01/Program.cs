@@ -12,6 +12,7 @@ namespace Exercise01 {
 
             // 3.1.1
             Exercise1_1(numbers);
+           
             Console.WriteLine("----");
 
             // 3.1.2
@@ -29,24 +30,25 @@ namespace Exercise01 {
 
         private static void Exercise1_1(List<int> numbers) {
             var exsits = numbers.Exists(s => s % 8 == 0 || s % 9 == 0);
-            Console.WriteLine(exsits);                           
+            Console.WriteLine(exsits);
         }
 
         private static void Exercise1_2(List<int> numbers) {
-         numbers.ForEach(s => Console.WriteLine(s/0.2));
+         numbers.ForEach(s => Console.WriteLine(s/2.0));
                                              
         }
 
         private static void Exercise1_3(List<int> numbers) {
-            var number = numbers.Exists(s => s >= 50);
-            Console.WriteLine(number);
+            var nums = numbers.Where(s => s >= 50);
+            foreach (var item in nums) { 
+            
+                Console.WriteLine(item);
+            }
+          
         }
 
         private static void Exercise1_4(List<int> numbers) {
-            IEnumerable<int>numbres  = numbers.Select(s => s*2);
-           
-            foreach (int s in numbres)
-                Console.WriteLine(s);
+            numbers.Select(s => s*2).ToList().ForEach(s => Console.WriteLine(s));
         }
     }
 }
