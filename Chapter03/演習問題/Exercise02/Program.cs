@@ -36,18 +36,20 @@ namespace Exercise02 {
             do {
                 //処理入力
                 var line = Console.ReadLine();
-                if (String.IsNullOrEmpty(line)) {                    
+                if (String.IsNullOrEmpty(line))                     
                   break;
                  int index = names.FindIndex(s => s == line);
                     Console.WriteLine(index);
-                }
+                
             } while (true);
 
         }
 
         private static void Exercise2_2(List<string> names) {
+            var count = names.Count( s => s.Contains('o'));
+            Console.WriteLine(count);
         }
-
+                        
         private static void Exercise2_3(List<string> names) {
         }
 
