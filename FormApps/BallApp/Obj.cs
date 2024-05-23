@@ -19,7 +19,7 @@ namespace BallApp {
             Image =Image.FromFile(path);
         }
         //移動メソッド(抽象メソッド)
-        public abstract bool Move(PictureBox pdBar,PictureBox pdBall);
+        public abstract int Move(PictureBox pdBar,PictureBox pdBall);
         public abstract bool Move(Keys direction);
     }
     }
