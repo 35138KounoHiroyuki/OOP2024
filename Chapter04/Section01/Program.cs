@@ -28,27 +28,30 @@ namespace Section01 {
 
             Console.Write("整数を入力：");           
            string inputNum = Console.ReadLine();
-            int num;
+            try {
+                int num = int.Parse(inputNum);
+            } catch (FormatException ex){
 
-            if(int.TryParse(inputNum, out num)) {
-                Console.WriteLine("変換に成功できました");
-                Console.WriteLine("整数に変換した値:"+num);
-            } else  {
-
-                Console.WriteLine(inputNum+"は変換できません") ;
+                Console.WriteLine("FormatException" + ex.Message) ;
+            
             }
-          //  int num = int.Parse(inputNum);
-           // Console.WriteLine("整数に変換した値:" + num);
+            catch(ArgumentException ex) {
 
+                Console.WriteLine("ArgumentException"+ex.Message);
+
+            }
+           catch (OverflowException ex) {
+                Console.WriteLine("OverflowException" + ex.Message);
+            }
+            finally {
+                Console.WriteLine("処理が終了しました");
+            }
 
 
         }
 
 
-        private static object DefaultMessage() {
-            return "Default Message";
-
-        }
+       
 
         private static object GetMessage(string code) {
             return null;
