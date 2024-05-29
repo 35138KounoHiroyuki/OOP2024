@@ -31,17 +31,39 @@ namespace Exercise02 {
             // 4.2.5
             Exercise2_5(ymCollection);
         }
+        private static void Exercise2_2(YearMonth[] ymCollection) {
+            foreach (var ym in ymCollection)
+            {
+                Console.WriteLine(ym);
+            }
 
-        private static void Exercise2_5(YearMonth[] ymCollection) {
-            throw new NotImplementedException();
+        }
+        // 4.2.3(4.2.4で呼び出されるメソッド)
+        static YearMonth FindFirst21C(YearMonth[] yms) {
+            foreach (var ym in yms) {
+                if (ym.Is21Century)
+                    return ym;
+            }
+            return null;
         }
 
         private static void Exercise2_4(YearMonth[] ymCollection) {
-            throw new NotImplementedException();
+            //var ym = FindFirst21C(ymCollection);
+            //if(ym != null) {
+            //    Console.WriteLine(ym);
+            //} else {
+            //    Console.WriteLine("21世紀のデータはありません");
+            //}
+            var ym = FindFirst21C(ymCollection);
+            Console.WriteLine(ym == null ? "21世紀のデータはありません" : ym.ToString());
         }
+        private static void Exercise2_5(YearMonth[] ymCollection) {
+            var array = ymCollection.Select(ym => ym.AddOneMonth() )
+                                    .ToArray();
+            foreach (var ym in array){
+                Console.WriteLine(ym);
+            }
 
-        private static void Exercise2_2(YearMonth[] ymCollection) {
-            throw new NotImplementedException();
         }
     }
 }
