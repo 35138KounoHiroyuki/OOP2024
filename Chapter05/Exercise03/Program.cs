@@ -24,19 +24,29 @@ namespace Exercise03 {
             Exercise3_5(text);
         }
         private static void Exercise3_1(string text) {
-           
-            
-        }
-        private static void Exercise3_2(string text) {
+                int spaces = text.Count(c => c == ' ');
+                Console.WriteLine("空白数:{0}", spaces);
 
+            }
+        private static void Exercise3_2(string text) {
+            var replaced = text.Replace("big", "small");
+            Console.WriteLine(replaced);
 
         }
 
         private static void Exercise3_3(string text) {
+            int count = text.Split(' ').Length;
+            Console.WriteLine("単語数:{0}", count);
         }
 
         
         private static void Exercise3_4(string text) {
+            var words = text.Split(' ')
+                           .Where(s => s.Length <= 4);
+            foreach (var item in words)
+            {
+                
+            }
         }
         private static void Exercise3_5(string text) {
 

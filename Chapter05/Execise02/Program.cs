@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 namespace Execise02 {
     internal class Program {
         static void Main(string[] args) {
-            var num = Console.ReadLine();
-            int.TryParse( );
+            var line = Console.ReadLine();
+            int num;
+            if (int.TryParse(line, out num)) {
+                Console.WriteLine("{0:#,#}", num);
+            } else {
+                Console.WriteLine("数値文字列でありません");
+            }
         }
     }
 }
