@@ -26,6 +26,10 @@ namespace Section04 {
                 Console.WriteLine("削除できません");
             Console.WriteLine();
 
+            // 7.2.4
+
+            foreach (var item in abbrs.Where(x => x.Key.Length == 3))
+                Console.WriteLine("{0}={1}", item.Key, item.Value);
 
 
             // インデクサの利用例
