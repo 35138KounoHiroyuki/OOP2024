@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
@@ -18,32 +19,22 @@ namespace Section01 {
 
             var birtday= new DateTime(year, month, day);
             DayOfWeek dayOfWeek = birtday.DayOfWeek;
-            Console.WriteLine(dayOfWeek.ToString());
 
-            switch (dayOfWeek) {
-                case DayOfWeek.Sunday:
-                    Console.WriteLine("あなたは日曜日に生まれました");
-                    break;
-                case DayOfWeek.Monday:
-                    Console.WriteLine("あなたは月曜日に生まれました");
-                    break;
-                case DayOfWeek.Tuesday:
-                    Console.WriteLine("あなたは火曜日に生まれました"); 
-                    break;
-                case DayOfWeek.Wednesday:
-                    Console.WriteLine("あなたは水曜日に生まれました"); 
-                    break;
-                case DayOfWeek.Thursday:
-                    Console.WriteLine("あなたは木曜日に生まれました"); 
-                    break;
-                case DayOfWeek.Friday:
-                    Console.WriteLine("あなたは金曜日に生まれました"); 
-                    break;
-                case DayOfWeek.Saturday:
-                    Console.WriteLine("あなたは土曜日に生まれました"); 
-                    break;
+            //あなたは平成00年０月０日０曜日に生まれました
+            
+            var culture = new CultureInfo("ja-jp");
+            culture.DateTimeFormat.Calendar = new JapaneseCalendar();
+            var str = birtday.ToString("ggyy年M月d日", culture);
+            Console.WriteLine("あなたは平成"+str+ birtday.ToString("ddd")+"曜日に生まれました");
+          //  Console.WriteLine();//(金)
+
+            //あなたは生まれてから今日で００００日目です
+            var nowdate = DateTime.Today;
+            var totaidays = nowdate.Subtract(birtday).TotalDays;
+            Console.WriteLine("あなたは生まれてから今日で"+totaidays+ "日目です");
+
 
             }
         }
     }
-}
+
