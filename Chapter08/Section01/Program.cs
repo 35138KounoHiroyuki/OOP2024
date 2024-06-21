@@ -10,17 +10,13 @@ namespace Section01 {
         static void Main(string[] args) {
             Console.WriteLine("生年月日を入力");
             Console.Write("年：");
-            string year = Console.ReadLine();
-            Console.Write("月");
-            string month = Console.ReadLine();
-            Console.Write("日");
-            string day = Console.ReadLine();
+           　int year =int.Parse (Console.ReadLine());
+            Console.Write("月：");
+            int month = int.Parse(Console.ReadLine());
+            Console.Write("日：");
+            int day =int.Parse (Console.ReadLine());
 
-            int y = int.Parse(year);
-            int m = int.Parse(month);
-            int d = int.Parse(day);
-
-            var birtday= new DateTime(y, m, d);
+            var birtday= new DateTime(year, month, day);
             DayOfWeek dayOfWeek = birtday.DayOfWeek;
             Console.WriteLine(dayOfWeek.ToString());
 
