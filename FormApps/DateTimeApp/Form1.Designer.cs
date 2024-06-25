@@ -24,13 +24,13 @@
         /// </summary>
         private void InitializeComponent() {
             label1 = new Label();
-            dtpBirthday = new DateTimePicker();
+            dtpDate = new DateTimePicker();
             bpDateCount = new Button();
             tbDisp = new TextBox();
             nudDay = new NumericUpDown();
             btDayBefore = new Button();
             btDayAfter = new Button();
-            btalld = new Button();
+            btage = new Button();
             ((System.ComponentModel.ISupportInitialize)nudDay).BeginInit();
             SuspendLayout();
             // 
@@ -44,12 +44,12 @@
             label1.TabIndex = 0;
             label1.Text = "日付";
             // 
-            // dtpBirthday
+            // dtpDate
             // 
-            dtpBirthday.Location = new Point(331, 162);
-            dtpBirthday.Name = "dtpBirthday";
-            dtpBirthday.Size = new Size(200, 39);
-            dtpBirthday.TabIndex = 1;
+            dtpDate.Location = new Point(331, 162);
+            dtpDate.Name = "dtpDate";
+            dtpDate.Size = new Size(200, 39);
+            dtpDate.TabIndex = 1;
             // 
             // bpDateCount
             // 
@@ -97,27 +97,28 @@
             btDayAfter.UseVisualStyleBackColor = true;
             btDayAfter.Click += btDayAfter_Click;
             // 
-            // btalld
+            // btage
             // 
-            btalld.Location = new Point(354, 340);
-            btalld.Name = "btalld";
-            btalld.Size = new Size(75, 43);
-            btalld.TabIndex = 6;
-            btalld.Text = "button1";
-            btalld.UseVisualStyleBackColor = true;
+            btage.Location = new Point(354, 340);
+            btage.Name = "btage";
+            btage.Size = new Size(75, 43);
+            btage.TabIndex = 6;
+            btage.Text = "年齢";
+            btage.UseVisualStyleBackColor = true;
+            btage.Click += btalld_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1486, 960);
-            Controls.Add(btalld);
+            Controls.Add(btage);
             Controls.Add(btDayAfter);
             Controls.Add(btDayBefore);
             Controls.Add(nudDay);
             Controls.Add(tbDisp);
             Controls.Add(bpDateCount);
-            Controls.Add(dtpBirthday);
+            Controls.Add(dtpDate);
             Controls.Add(label1);
             Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
             Margin = new Padding(6);
@@ -131,12 +132,12 @@
         #endregion
 
         private Label label1;
-        private DateTimePicker dtpBirthday;
+        private DateTimePicker dtpDate;
         private Button bpDateCount;
         private TextBox tbDisp;
         private NumericUpDown nudDay;
         private Button btDayBefore;
         private Button btDayAfter;
-        private Button btalld;
+        private Button btage;
     }
 }
