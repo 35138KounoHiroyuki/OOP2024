@@ -185,7 +185,6 @@
             rbHonda.TabIndex = 0;
             rbHonda.Text = "ホンダ";
             rbHonda.UseVisualStyleBackColor = true;
-         //   rbHonda.CheckedChanged += rbHonda_CheckedChanged;
             // 
             // rbNissan
             // 
@@ -301,6 +300,7 @@
             dgvCarReport.AllowUserToAddRows = false;
             dgvCarReport.AllowUserToDeleteRows = false;
             dgvCarReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCarReport.Enabled = false;
             dgvCarReport.Location = new Point(101, 329);
             dgvCarReport.MultiSelect = false;
             dgvCarReport.Name = "dgvCarReport";
