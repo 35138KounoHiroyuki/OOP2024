@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.Metrics;
+using System.Runtime.Serialization.Formatters.Binary;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CarReportSystem {
@@ -157,7 +158,7 @@ namespace CarReportSystem {
             if ((dgvCarReport.CurrentRow == null)
                 || (!dgvCarReport.CurrentRow.Selected)) return;
 
-         //   if(cbAuthor.Text =="" || )
+            //   if(cbAuthor.Text =="" || )
 
             listCarReports[dgvCarReport.CurrentRow.Index].Date = dtpDate.Value;
             listCarReports[dgvCarReport.CurrentRow.Index].Author = cbAuthor.Text;
@@ -177,5 +178,52 @@ namespace CarReportSystem {
         private void cbCarName_TextChanged(object sender, EventArgs e) {
             tslbMassage.Text = "";
         }
+        //保存ボタン
+        private void btReportSave_Click(object sender, EventArgs e) {
+            if (sfdReportFileSave.ShowDialog() == DialogResult.OK) {
+                try {
+                    //バイナリ形式でシリアル化
+#pragma warning disable SYSLIB0011 // 型またはメンバーが旧型式です
+                    var bf = new BinaryFormatter();
+#pragma warning restore SYSLIB0011 // 型またはメンバーが旧型式です
+                    using (FileStream fs = File.Open(
+                           sfdReportFileSave.FileName, FileMode.Create)) {
+                        bf.Serialize(fs, listCarReports);
+                    }
+
+                }
+                catch (Exception) {
+
+                    throw;
+                }
+
+
+
+            }
+        }
+
+        private void btReportOpen_Click(object sender, EventArgs e) {
+            if(ofdReportFileOpen.ShowDialog() == DialogResult.OK) {
+                try {
+                    //逆シリアル化でバイナリ形式で取り込む
+#pragma warning disable SYSLIB0011 // 型またはメンバーが旧型式です
+                    var bf = new BinaryFormatter();
+#pragma warning restore SYSLIB0011 // 型またはメンバーが旧型式です
+                    using (FileStream fs = File.Open(ofdReportFileOpen.FileName,FileMode.Open,FileAccess.Read)) {
+
+                        listCarReports = (BindingList<CarReport>)bf.Deserialize(fs);
+                        dgvCarReport.DataSource = listCarReports;
+                    }
+                }
+                catch (Exception) {
+
+                    throw;
+                }
+
+               
+
+                }
+            }
+        }
     }
-}
+
