@@ -51,9 +51,12 @@
             btReportSave = new Button();
             btReportOpen = new Button();
             ofdPicFileOpen = new OpenFileDialog();
+            ssMessageArea = new StatusStrip();
+            tslbMassage = new ToolStripStatusLabel();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).BeginInit();
+            ssMessageArea.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -92,6 +95,7 @@
             cbAuthor.Name = "cbAuthor";
             cbAuthor.Size = new Size(302, 33);
             cbAuthor.TabIndex = 2;
+            cbAuthor.TextChanged += cbAuthor_TextChanged;
             // 
             // label3
             // 
@@ -131,6 +135,7 @@
             cbCarName.Name = "cbCarName";
             cbCarName.Size = new Size(302, 33);
             cbCarName.TabIndex = 2;
+            cbCarName.TextChanged += cbCarName_TextChanged;
             // 
             // groupBox1
             // 
@@ -149,10 +154,12 @@
             // rbOther
             // 
             rbOther.AutoSize = true;
+            rbOther.Checked = true;
             rbOther.Location = new Point(307, 15);
             rbOther.Name = "rbOther";
             rbOther.Size = new Size(56, 19);
             rbOther.TabIndex = 0;
+            rbOther.TabStop = true;
             rbOther.Text = "その他";
             rbOther.UseVisualStyleBackColor = true;
             // 
@@ -302,7 +309,6 @@
             dgvCarReport.AllowUserToAddRows = false;
             dgvCarReport.AllowUserToDeleteRows = false;
             dgvCarReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCarReport.Enabled = false;
             dgvCarReport.Location = new Point(101, 329);
             dgvCarReport.MultiSelect = false;
             dgvCarReport.Name = "dgvCarReport";
@@ -336,11 +342,27 @@
             // 
             ofdPicFileOpen.FileName = "openFileDialog1";
             // 
+            // ssMessageArea
+            // 
+            ssMessageArea.Items.AddRange(new ToolStripItem[] { tslbMassage });
+            ssMessageArea.Location = new Point(0, 523);
+            ssMessageArea.Name = "ssMessageArea";
+            ssMessageArea.Size = new Size(780, 22);
+            ssMessageArea.SizingGrip = false;
+            ssMessageArea.TabIndex = 8;
+            ssMessageArea.Text = "statusStrip1";
+            // 
+            // tslbMassage
+            // 
+            tslbMassage.Name = "tslbMassage";
+            tslbMassage.Size = new Size(0, 17);
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(780, 491);
+            ClientSize = new Size(780, 545);
+            Controls.Add(ssMessageArea);
             Controls.Add(dgvCarReport);
             Controls.Add(pbPicture);
             Controls.Add(btPicDelete);
@@ -362,6 +384,8 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Form1";
             Text = "試乗レポート管理システム";
             Load += Form1_Load;
@@ -369,6 +393,8 @@
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).EndInit();
+            ssMessageArea.ResumeLayout(false);
+            ssMessageArea.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -403,5 +429,7 @@
         private Button btReportSave;
         private Button btReportOpen;
         private OpenFileDialog ofdPicFileOpen;
+        private StatusStrip ssMessageArea;
+        private ToolStripStatusLabel tslbMassage;
     }
 }
