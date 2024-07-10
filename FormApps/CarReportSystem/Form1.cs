@@ -1,19 +1,24 @@
+using CarReportSystem;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.Metrics;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml;
+using System.Xml.Serialization;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CarReportSystem {
-    public partial class Form1 : Form {
-
+    
+    public partial class Form1 : Form {  
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
-
+        //設定クラスのインスタンスの作成
+        Settings settings = new Settings();
         //コンストラクタ
         public Form1() {
             InitializeComponent();
             dgvCarReport.DataSource = listCarReports;
+          
         }
 
         private void btAddReport_Click(object sender, EventArgs e) {
@@ -131,6 +136,12 @@ namespace CarReportSystem {
             //交互に色を設定（データグリッドビュー）
             dgvCarReport.RowsDefaultCellStyle.BackColor = Color.AliceBlue;
             dgvCarReport.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke;
+
+            //設定ファイルを逆シリアル化して背景を設定
+            using (var reader = XmlReader.Create("Settings.xml")) {
+
+            }
+
         }
 
         private void dgvCarReport_Click(object sender, EventArgs e) {
@@ -255,9 +266,31 @@ namespace CarReportSystem {
         }
 
         private void 終了ToolStripMenuItem_Click(object sender, EventArgs e) {
-            if(MessageBox.Show("本当に終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("本当に終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 Application.Exit();
         }
 
+        private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (cdColor.ShowDialog() == DialogResult.OK) {
+                BackColor = cdColor.Color;
+                settings.MainFormColor = cdColor.Color.ToArgb();
+            }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+            
+            //設定ファイルのシリアル化
+            try {
+             
+                using (var writer = XmlWriter.Create("Settings.xml")) { 
+                    var serializer =new XmlSerializer(settings.GetType());
+                    serializer.Serialize(writer, settings);
+                }
+            }
+            catch (Exception) {
+                MessageBox.Show("設定ファイル書込みエラー");
+            }
+        }
     }
+   
 }
