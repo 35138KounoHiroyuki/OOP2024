@@ -63,6 +63,8 @@
             toolStripSeparator2 = new ToolStripSeparator();
             終了ToolStripMenuItem = new ToolStripMenuItem();
             cdColor = new ColorDialog();
+            ヘルプhToolStripMenuItem = new ToolStripMenuItem();
+            このアプリについてToolStripMenuItem = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).BeginInit();
@@ -380,7 +382,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { ファイルToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { ファイルToolStripMenuItem, ヘルプhToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(780, 24);
@@ -397,40 +399,54 @@
             // 開くToolStripMenuItem
             // 
             開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            開くToolStripMenuItem.Size = new Size(119, 22);
+            開くToolStripMenuItem.Size = new Size(180, 22);
             開くToolStripMenuItem.Text = "開く...";
             開くToolStripMenuItem.Click += 開くToolStripMenuItem_Click;
             // 
             // 保存ToolStripMenuItem1
             // 
             保存ToolStripMenuItem1.Name = "保存ToolStripMenuItem1";
-            保存ToolStripMenuItem1.Size = new Size(119, 22);
+            保存ToolStripMenuItem1.Size = new Size(180, 22);
             保存ToolStripMenuItem1.Text = "保存...";
             保存ToolStripMenuItem1.Click += 保存ToolStripMenuItem1_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(116, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // 色設定ToolStripMenuItem
             // 
             色設定ToolStripMenuItem.Name = "色設定ToolStripMenuItem";
-            色設定ToolStripMenuItem.Size = new Size(119, 22);
+            色設定ToolStripMenuItem.Size = new Size(180, 22);
             色設定ToolStripMenuItem.Text = "色設定...";
             色設定ToolStripMenuItem.Click += 色設定ToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(116, 6);
+            toolStripSeparator2.Size = new Size(177, 6);
             // 
             // 終了ToolStripMenuItem
             // 
             終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            終了ToolStripMenuItem.Size = new Size(119, 22);
+            終了ToolStripMenuItem.Size = new Size(180, 22);
             終了ToolStripMenuItem.Text = "終了";
             終了ToolStripMenuItem.Click += 終了ToolStripMenuItem_Click;
+            // 
+            // ヘルプhToolStripMenuItem
+            // 
+            ヘルプhToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { このアプリについてToolStripMenuItem });
+            ヘルプhToolStripMenuItem.Name = "ヘルプhToolStripMenuItem";
+            ヘルプhToolStripMenuItem.Size = new Size(63, 20);
+            ヘルプhToolStripMenuItem.Text = "ヘルプ(&h)";
+            // 
+            // このアプリについてToolStripMenuItem
+            // 
+            このアプリについてToolStripMenuItem.Name = "このアプリについてToolStripMenuItem";
+            このアプリについてToolStripMenuItem.Size = new Size(180, 22);
+            このアプリについてToolStripMenuItem.Text = "このアプリについて...";
+            このアプリについてToolStripMenuItem.Click += このアプリについてToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -522,5 +538,7 @@
         private ToolStripMenuItem 終了ToolStripMenuItem;
         private ToolStripSeparator 保存ToolStripMenuItem;
         private ColorDialog cdColor;
+        private ToolStripMenuItem ヘルプhToolStripMenuItem;
+        private ToolStripMenuItem このアプリについてToolStripMenuItem;
     }
 }

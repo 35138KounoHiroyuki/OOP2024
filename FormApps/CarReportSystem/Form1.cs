@@ -1,24 +1,24 @@
-using CarReportSystem;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics.Metrics;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml;
 using System.Xml.Serialization;
+using System.Xml;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Reflection;
 
 namespace CarReportSystem {
-    
-    public partial class Form1 : Form {  
+    public partial class Form1 : Form {
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
-        //設定クラスのインスタンスの作成
-        Settings settings = new Settings();
+
+        //設定クラスのインスタンス作成
+        Settings settings = Settings.getInstance();
+
         //コンストラクタ
         public Form1() {
             InitializeComponent();
             dgvCarReport.DataSource = listCarReports;
-          
         }
 
         private void btAddReport_Click(object sender, EventArgs e) {
@@ -137,11 +137,22 @@ namespace CarReportSystem {
             dgvCarReport.RowsDefaultCellStyle.BackColor = Color.AliceBlue;
             dgvCarReport.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke;
 
-            //設定ファイルを逆シリアル化して背景を設定
-            using (var reader = XmlReader.Create("Settings.xml")) {
-
+            if (File.Exists("settings.xml")) {
+                //設定ファイルを逆シリアル化して背景を設定(P307 リスト12.7を参考にする)
+                try {
+                    using (var reader = XmlReader.Create("settings.xml")) {
+                        var serializer = new XmlSerializer(typeof(Settings));
+                        var settings = serializer.Deserialize(reader) as Settings;
+                        BackColor = Color.FromArgb(settings.MainFormColor);
+                        settings.MainFormColor = BackColor.ToArgb();
+                    }
+                }
+                catch (Exception) {
+                    tslbMessage.Text = "色情報ファイルエラー";
+                }
+            } else {
+                tslbMessage.Text = "色情報ファイルがありません";
             }
-
         }
 
         private void dgvCarReport_Click(object sender, EventArgs e) {
@@ -266,31 +277,39 @@ namespace CarReportSystem {
         }
 
         private void 終了ToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (MessageBox.Show("本当に終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+
+            if (MessageBox.Show("本当に終了しますか？", "確認",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
                 Application.Exit();
+            }
         }
 
         private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
             if (cdColor.ShowDialog() == DialogResult.OK) {
-                BackColor = cdColor.Color;
-                settings.MainFormColor = cdColor.Color.ToArgb();
+                BackColor = cdColor.Color;  //背景色設定
+                settings.MainFormColor = cdColor.Color.ToArgb();//背景色保存
             }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
-            
             //設定ファイルのシリアル化
             try {
-             
-                using (var writer = XmlWriter.Create("Settings.xml")) { 
-                    var serializer =new XmlSerializer(settings.GetType());
+                using (var writer = XmlWriter.Create("settings.xml")) {
+                    var serializer = new XmlSerializer(settings.GetType());
                     serializer.Serialize(writer, settings);
                 }
             }
             catch (Exception) {
-                MessageBox.Show("設定ファイル書込みエラー");
+                MessageBox.Show("設定ファイル書き込みエラー");
             }
         }
+
+        private void このアプリについてToolStripMenuItem_Click(object sender, EventArgs e) {
+            var fmversion = new fmVersion();
+            fmversion.ShowDialog();
+          //  fmversion.Show();
+        
+
+        }
     }
-   
 }
