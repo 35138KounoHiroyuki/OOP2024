@@ -45,11 +45,18 @@ namespace Exercise01 {
                              .Select(x => new {
                                  Name = x.Element("name").Value,
                                  Teammembers = x.Element("teammembers").Value})
-                              .OrderByDescending(x => int.Parse(x.Teammembers)).First();
+                             .OrderByDescending(x => int.Parse(x.Teammembers)).FirstOrDefault();
             Console.WriteLine("{0}({1}人)", sports.Name,sports.Teammembers);
         }     
         private static void Exercise1_4(string file, string newfile) {
-
+            var xdoc = XDocument.Load(file);
+            var element = new XElement("ballsport",
+                 new XElement("name", "サッカー", new XAttribute("kanji", "蹴球")),
+                 new XElement("teammembers", "11"),
+                 new XElement("firstplayed", "1863")
+              );
+            xdoc.Root.Add(element);
+            xdoc.Save(newfile);
         }
     }
 }
