@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -30,7 +31,7 @@ namespace Exercise01 {
             var emp = new Employee {
                 Id = 123,
                 Name = "X",
-                HireDate = new DateTime(2001, 5, 10)
+                HireDate = new DateTime(2004, 9, 10)
             };
             using (var writer = XmlWriter.Create("employee.xml")) {
                 var serializer = new XmlSerializer(emp.GetType());
@@ -40,9 +41,30 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_2(string v) {
-           
-        }
+            var emps = new Employee[] {
+               new Employee {
+                   Id = 123,
+                   Name = "出井　秀行",
+                   HireDate = new DateTime(2004, 9, 10)
+               },
+               new Employee {
+                   Id = 139,
+                   Name = "大橋　工事",
+                   HireDate = new DateTime(2004,4,8)
+               },
+           };
+            var settings = new XmlWriterSettings {
+                Encoding = new System.Text.UTF8Encoding(false),
+                Indent = true,
+                IndentChars = "  ",
+            };
+            using (var writer = XmlWriter.Create("employees.xml", settings)) {
+                var serializer = new DataContractSerializer(emps.GetType());
+                serializer.WriteObject(writer, emps);
+            }
 
+
+        }
         private static void Exercise1_3(string v) {
            
         }
