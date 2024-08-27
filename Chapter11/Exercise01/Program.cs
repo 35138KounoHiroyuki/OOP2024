@@ -50,13 +50,32 @@ namespace Exercise01 {
         }     
         private static void Exercise1_4(string file, string newfile) {
             var xdoc = XDocument.Load(file);
-            var element = new XElement("ballsport",
-                 new XElement("name", "サッカー", new XAttribute("kanji", "蹴球")),
-                 new XElement("teammembers", "11"),
-                 new XElement("firstplayed", "1863")
-              );
-            xdoc.Root.Add(element);
-            xdoc.Save(newfile);
+            string Name, Kanji;
+            int Teammembers, firstplayed, num;
+            while (true) { 
+            Console.Write("名称:");
+              Name = Console.ReadLine();
+            Console.Write("漢字:");
+             Kanji = Console.ReadLine();
+            Console.Write("プレー人数:");
+             Teammembers = int.Parse (Console.ReadLine());
+            Console.Write("年初:");
+             firstplayed = int.Parse(Console.ReadLine());
+            Console.WriteLine("追加【１】、保存【2】");
+
+                var element = new XElement("ballsport",
+                   new XElement("name", Name, new XAttribute("kanji", Kanji)),
+                   new XElement("teammembers", Teammembers),
+                   new XElement("firstplayed", firstplayed)
+                 );
+                 num = int.Parse (Console.ReadLine());
+
+                if (num == 2) break;
+
+                
+                xdoc.Root.Add(element);
+                xdoc.Save(newfile);
+            }
         }
     }
 }
