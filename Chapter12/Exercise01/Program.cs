@@ -53,12 +53,8 @@ namespace Exercise01 {
                    HireDate = new DateTime(2004,4,8)
                },
            };
-            var settings = new XmlWriterSettings {
-                Encoding = new System.Text.UTF8Encoding(false),
-                Indent = true,
-                IndentChars = "  ",
-            };
-            using (var writer = XmlWriter.Create("employees.xml", settings)) {
+
+            using (var writer = XmlWriter.Create("employee.xml")) {
                 var serializer = new DataContractSerializer(emps.GetType());
                 serializer.WriteObject(writer, emps);
             }
@@ -66,7 +62,13 @@ namespace Exercise01 {
 
         }
         private static void Exercise1_3(string v) {
-           
+            using (XmlReader reader = XmlReader.Create("employee.xml")) {
+                var serializer = new DataContractSerializer(typeof(Employee[]));
+                var emps = serializer.ReadObject(reader) as Employee[];
+                foreach (var emp in emps) {
+                    Console.WriteLine("{0} {1} {2}", emp.Id, emp.Name, emp.HireDate);
+               }
+            }
         }
 
         private static void Exercise1_4(string v) {
