@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
@@ -72,7 +76,35 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_4(string v) {
-           
+            var emps = new Employee[] {
+               new Employee {
+                   Id = 123,
+                   Name = "出井　秀行",
+                   HireDate = new DateTime(2004, 9, 10)
+               },
+               new Employee {
+                   Id = 139,
+                   Name = "大橋　工事",
+                   HireDate = new DateTime(2004,4,8)
+               },
+           };
+
+
+            // シリアル化したものをファイル出力
+            using (var stream = new FileStream("employee", FileMode.Create, FileAccess.Write)) {
+                
+     // Jsonserializerを使ってシリアル化
+                var options = new JsonSerializerOptions {
+                    Encoder = JavaScriptEncoder.Create(UnicodeRange.All),
+                    WriteIndented = true,
+                };
+
+
+                string jsonString = JsonSerializer.Serialize(emps,options);
+                Console.WriteLine($"{jsonString}");
+
+              //  File.WriteAllText("employee", jsonString);
+            }
         }
     }
 }
