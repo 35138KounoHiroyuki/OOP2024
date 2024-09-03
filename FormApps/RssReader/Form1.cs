@@ -21,14 +21,14 @@ namespace RssReader {
                 var url = wc.OpenRead(tbRssUrl.Text);
                 var xdoc = XDocument.Load(url);
 
-                var xelements = xdoc.Root.Descendants("item").Descendants("title");
-                foreach (var item in xelements) {
-                    XElement xname = item.Element("item");
-                    lbRssTitle.Items.Add(item.Value);
-
-
+                var xelements = xdoc.Root.Descendants("item")
+                                //  .Select(item => item.Element("title").Value);
+                                    .
+                foreach (var title in xelements) {
+                    lbRssTitle.Items.Add(title);
                 }
             }
         }
     }
 }
+
