@@ -51,7 +51,7 @@
             this.lbRssTitle.ItemHeight = 12;
             this.lbRssTitle.Location = new System.Drawing.Point(13, 52);
             this.lbRssTitle.Name = "lbRssTitle";
-            this.lbRssTitle.Size = new System.Drawing.Size(545, 328);
+            this.lbRssTitle.Size = new System.Drawing.Size(511, 124);
             this.lbRssTitle.TabIndex = 2;
             // 
             // Form1
