@@ -5,11 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
-
+using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.WinForms;
 namespace RssReader {
 
     public partial class Form1 : Form {
@@ -36,9 +38,15 @@ namespace RssReader {
         }
 
         private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
-            webBrowser1.Navigate(items[lbRssTitle.SelectedIndex].Link);
+           // webView21.Navigate(items[lbRssTitle.SelectedIndex].Link);
+            //if (webView21 != null && webView21.CoreWebView2 != null) {
+            //    webView21.CoreWebView2.Navigate(items[lbRssTitle.SelectedIndex].Link);
+            //}
+            Uri uri = new Uri(items[lbRssTitle.SelectedIndex].Link);
+            webView21.Source = uri;
         }
     }
+    
     public class ItemData {
         public string Title { get; set; }
         public string Link { get; set; }
