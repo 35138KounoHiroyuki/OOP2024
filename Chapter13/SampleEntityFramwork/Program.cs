@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 namespace SampleEntityFramwork {
     internal class Program {
         static void Main(string[] args) {
-            AddAuthors();
-            AddBooks();
+            //AddAuthors();
+            //AddBooks();
+           
             //GetBooks();
             /* foreach (var book in GetBooks()) {
                  Console.WriteLine($"{book.Title}");
