@@ -33,7 +33,7 @@
             // btGet
             // 
             this.btGet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btGet.Location = new System.Drawing.Point(752, 9);
+            this.btGet.Location = new System.Drawing.Point(906, 7);
             this.btGet.Name = "btGet";
             this.btGet.Size = new System.Drawing.Size(75, 23);
             this.btGet.TabIndex = 1;
@@ -45,9 +45,9 @@
             // 
             this.lbRssTitle.FormattingEnabled = true;
             this.lbRssTitle.ItemHeight = 12;
-            this.lbRssTitle.Location = new System.Drawing.Point(13, 52);
+            this.lbRssTitle.Location = new System.Drawing.Point(13, 88);
             this.lbRssTitle.Name = "lbRssTitle";
-            this.lbRssTitle.Size = new System.Drawing.Size(210, 592);
+            this.lbRssTitle.Size = new System.Drawing.Size(210, 556);
             this.lbRssTitle.TabIndex = 2;
             this.lbRssTitle.SelectedIndexChanged += new System.EventHandler(this.lbRssTitle_SelectedIndexChanged);
             // 
@@ -56,26 +56,16 @@
             this.webView21.AllowExternalDrop = true;
             this.webView21.CreationProperties = null;
             this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.webView21.Location = new System.Drawing.Point(237, 52);
+            this.webView21.Location = new System.Drawing.Point(237, 85);
             this.webView21.Name = "webView21";
-            this.webView21.Size = new System.Drawing.Size(814, 590);
+            this.webView21.Size = new System.Drawing.Size(814, 557);
             this.webView21.TabIndex = 3;
             this.webView21.ZoomFactor = 1D;
             // 
             // cbRssUrl
             // 
             this.cbRssUrl.FormattingEnabled = true;
-            this.cbRssUrl.Items.AddRange(new object[] {
-            "主要",
-            "国内",
-            "国際",
-            "経済",
-            "エンタメ",
-            "スポーツ",
-            "IT",
-            "科学",
-            "地域"});
-            this.cbRssUrl.Location = new System.Drawing.Point(116, 11);
+            this.cbRssUrl.Location = new System.Drawing.Point(299, 9);
             this.cbRssUrl.Name = "cbRssUrl";
             this.cbRssUrl.Size = new System.Drawing.Size(583, 20);
             this.cbRssUrl.TabIndex = 4;
