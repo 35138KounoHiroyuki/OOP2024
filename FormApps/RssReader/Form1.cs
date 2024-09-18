@@ -23,25 +23,12 @@ namespace RssReader {
         public Form1() {
             InitializeComponent();
 
-            cbRssUrl.Items.Add(new cbRssUrlItem { DisplayText = "主要", Url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml" });
-            cbRssUrl.Items.Add(new cbRssUrlItem { DisplayText = "国内", Url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml" });
-            cbRssUrl.Items.Add(new cbRssUrlItem { DisplayText = "国際", Url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml" });
-            cbRssUrl.Items.Add(new cbRssUrlItem { DisplayText = "経済", Url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml" });
-            cbRssUrl.Items.Add(new cbRssUrlItem { DisplayText = "エンタメ", Url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml" });
-            cbRssUrl.Items.Add(new cbRssUrlItem { DisplayText = "スポーツ", Url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml" });
-            cbRssUrl.Items.Add(new cbRssUrlItem { DisplayText = "IT", Url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml" });
-            cbRssUrl.Items.Add(new cbRssUrlItem { DisplayText = "科学", Url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml" });
-            cbRssUrl.Items.Add(new cbRssUrlItem { DisplayText = "地域", Url = "https://news.yahoo.co.jp/rss/topics/top-picks.xml" });
+           
 
         }
 
-        private void cbRssUrl_SelectedIndexChanged(object sender, EventArgs e) {
-            if (cbRssUrl.SelectedItem is cbRssUrlItem selectedItem) {
-                string url = selectedItem.Url;
-                // URL を使用した処理
-                
-            }
-        }
+        
+        
 
 
 
