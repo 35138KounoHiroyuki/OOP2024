@@ -45,15 +45,37 @@ namespace exercise01 {
         }
 
         private static void Exercise1_4() {
-            throw new NotImplementedException();
+
+            var query = Library.Books
+                              .Join(Library.Categories,//結合する2番のシーケンス
+                                   book => book.CategoryId,//対象シーケンスの結合キー
+                                   category => category.Id,
+                                    (book, category) => new {
+                                        book.Title,
+                                        book.PublishedYear,
+                                        book.Price,
+                                        CategoryName = category.Name
+                                    })
+                              .OrderByDescending(x => x.PublishedYear)
+                              .ThenByDescending(x => x.Price);
+            foreach (var item in query)
+                Console.WriteLine("{0}年 {1}円 {2} ({3})",item.PublishedYear,item.Price,item.Title,item.CategoryName);
         }
 
         private static void Exercise1_5() {
-            throw new NotImplementedException();
+            var query = Library.Books
+                              .Where(b => b.PublishedYear == 2016)
+                              .Join(
+                                  Library.Categories, book => book.CategoryId,
+                                  category => category.Id,
+                                  (book, category) => category.Name)
+                              .Distinct();
+            foreach (var name in query)
+                Console.WriteLine(name);
         }
 
         private static void Exercise1_6() {
-            throw new NotImplementedException();
+           
         }
 
         private static void Exercise1_7() {
