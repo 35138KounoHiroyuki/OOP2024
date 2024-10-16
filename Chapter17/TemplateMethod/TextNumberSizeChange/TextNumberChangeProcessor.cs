@@ -11,10 +11,9 @@ namespace TextNumberChange {
             new Dictionary<char, char>() {
                 {'０','0'},{'１','1'},{'２','2'},{'３','3'},{'４','4'},{'５','5'},{'６','6'},{'７','7'},{'８','8'},{'９','9'}
             };
-
         protected override void Execute(string line) {
-            var s = Regex.Replace(line, "[０-９]", c => _dictionary[c.Value[0]].ToString());
-            Console.WriteLine(s);
+            var x = Regex.Replace(line, "[０-９]", c => _dictionary[c.Value[0]].ToString());
+            Console.WriteLine(x);
         }
     }
 }
