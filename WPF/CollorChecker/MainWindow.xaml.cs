@@ -30,7 +30,15 @@ namespace CollorChecker {
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
-
+            byte Red = (byte)rSlider.Value;
+            byte Green = (byte)gSlider.Value;
+            byte Blue = (byte)bSlider.Value;
+            MyColor myColor = new MyColor {
+                Color = Color.FromRgb(Red, Green, Blue),
+                Name = ToString()
+            };
+            stockList.Items.Add(myColor);
+            }
         }
     }
-}
+

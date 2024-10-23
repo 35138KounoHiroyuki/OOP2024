@@ -51,7 +51,7 @@
                 <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
             <Button x:Name="stockButton" Content="STOCK" HorizontalAlignment="Center" VerticalAlignment="Center" Width="213" Height="36" FontSize="20" BorderBrush="#FF00C8E2" Background="#FFD285D2" Click="stockButton_Click"/>
-            <ListBox x:Name="stockList" Grid.Row="1" Margin="10" Background="#FFA8E2E4"/>
+            <ListBox x:Name="stockList" Grid.Row="1" Margin="10" Background="#FFA8E2E4" ItemStringFormat=""/>
         </Grid>
 
 
