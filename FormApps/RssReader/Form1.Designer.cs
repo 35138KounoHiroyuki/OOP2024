@@ -1,5 +1,5 @@
 ﻿namespace RSSReader {
-    partial class cbFav {
+    partial class Form1 {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>
@@ -26,8 +26,11 @@
             this.btGet = new System.Windows.Forms.Button();
             this.lbRssTitle = new System.Windows.Forms.ListBox();
             this.webView2 = new Microsoft.Web.WebView2.WinForms.WebView2();
-            this.cbRssUrl = new System.Windows.Forms.ComboBox();
             this.cbFa = new System.Windows.Forms.ComboBox();
+            this.tbRssName = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Delete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.webView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,37 +66,64 @@
             this.webView2.TabIndex = 3;
             this.webView2.ZoomFactor = 1D;
             // 
-            // cbRssUrl
-            // 
-            this.cbRssUrl.FormattingEnabled = true;
-            this.cbRssUrl.Location = new System.Drawing.Point(299, 9);
-            this.cbRssUrl.Name = "cbRssUrl";
-            this.cbRssUrl.Size = new System.Drawing.Size(583, 20);
-            this.cbRssUrl.TabIndex = 4;
-            this.cbRssUrl.Tag = "";
-            // 
             // cbFa
             // 
             this.cbFa.FormattingEnabled = true;
-            this.cbFa.Location = new System.Drawing.Point(299, 59);
+            this.cbFa.Location = new System.Drawing.Point(299, 9);
             this.cbFa.Name = "cbFa";
             this.cbFa.Size = new System.Drawing.Size(583, 20);
-            this.cbFa.TabIndex = 5;
+            this.cbFa.TabIndex = 4;
+            this.cbFa.Tag = "";
             // 
-            // cbFav
+            // tbRssName
+            // 
+            this.tbRssName.Location = new System.Drawing.Point(299, 54);
+            this.tbRssName.Name = "tbRssName";
+            this.tbRssName.Size = new System.Drawing.Size(583, 19);
+            this.tbRssName.TabIndex = 5;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(888, 50);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "登録";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(299, 54);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(583, 19);
+            this.textBox1.TabIndex = 5;
+            // 
+            // Delete
+            // 
+            this.Delete.Location = new System.Drawing.Point(969, 50);
+            this.Delete.Name = "Delete";
+            this.Delete.Size = new System.Drawing.Size(75, 23);
+            this.Delete.TabIndex = 7;
+            this.Delete.Text = "消去";
+            this.Delete.UseVisualStyleBackColor = true;
+            // 
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1094, 654);
+            this.Controls.Add(this.Delete);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.tbRssName);
             this.Controls.Add(this.cbFa);
-            this.Controls.Add(this.cbRssUrl);
             this.Controls.Add(this.webView2);
             this.Controls.Add(this.lbRssTitle);
             this.Controls.Add(this.btGet);
-            this.Name = "cbFav";
+            this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.webView2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -101,8 +131,11 @@
         private System.Windows.Forms.Button btGet;
         private System.Windows.Forms.ListBox lbRssTitle;
         private Microsoft.Web.WebView2.WinForms.WebView2 webView2;
-        private System.Windows.Forms.ComboBox cbRssUrl;
         private System.Windows.Forms.ComboBox cbFa;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox tbRssName;
+        private System.Windows.Forms.Button Delete;
     }
 }
 

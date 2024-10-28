@@ -1,51 +1,38 @@
 ﻿using System;
-
 using System.Collections.Generic;
-
 using System.ComponentModel;
-
 using System.Data;
-
 using System.Drawing;
-
 using System.IO;
-
 using System.Linq;
-
 using System.Net;
-
 using System.Reflection.Emit;
-
 using System.Security.Policy;
-
 using System.Text;
-
 using System.Threading.Tasks;
-
 using System.Windows.Forms;
-
 using System.Xml.Linq;
-
 using Microsoft.Web.WebView2.Core;
+using RssReader;
+//using Windows.UI.Xaml.Controls;
 
-using Windows.UI.Xaml.Controls;
 
 namespace RSSReader {
 
-    public partial class cbFav : Form {
+    public partial class Form1 : Form {
 
         List<ItemData> items;
 
-        public cbFav() {
+        public Form1() {
 
             InitializeComponent();
 
-
+        
         }
 
         private void btGet_Click(object sender, EventArgs e) {
 
-            var selectedFavorite = cbFa.SelectedItem as Class1;
+            var selectedFavorite = cbFa.SelectedItem as CbBox;
 
             string url;
 
@@ -128,23 +115,23 @@ namespace RSSReader {
 
         private void btRegist_Click(object sender, EventArgs e) {
 
-            if (string.IsNullOrWhiteSpace(cbFa.Text) || string.IsNullOrWhiteSpace(tbRssname.Text)) {
+            if (string.IsNullOrWhiteSpace(cbFa.Text) || string.IsNullOrWhiteSpace(tbRssName.Text)) {
 
                 MessageBox.Show("URLまたは名称が入力されていません");
 
             } else {
 
-                var newFavorite = new Class1 {
+                var newFavorite = new CbBox {
 
-                    Name = tbRssname.Text,
+                    Name = tbRssName.Text,
 
                     Url = cbFa.Text
 
                 };
 
-                if (!cbFavorite.Items.OfType<Class1>().Any(item => item.Name == newFavorite.Name && item.Url == newFavorite.Url)) {
+                if (!cbFa.Items.OfType<CbBox>().Any(item => item.Name == newFavorite.Name && item.Url == newFavorite.Url)) {
 
-                    cbFavorite.Items.Add(newFavorite);
+                    cbFa.Items.Add(newFavorite);
 
                     MessageBox.Show("お気に入り登録完了");
 
@@ -164,13 +151,13 @@ namespace RSSReader {
 
             cbFa.Text = "";
 
-            tbRssname.Text = "";
+            tbRssName.Text = "";
 
         }
 
         private void cbFavorite_SelectedIndexChanged(object sender, EventArgs e) {
 
-            var selectedFavorite = cbFa.SelectedItem as Class1;
+            var selectedFavorite = cbFa.SelectedItem as CbBox;
 
             if (selectedFavorite != null) {
 
@@ -184,7 +171,7 @@ namespace RSSReader {
 
         private void btDelete_Click(object sender, EventArgs e) {
 
-            var selectedFavorite = cbFa.SelectedItem as Class1;
+            var selectedFavorite = cbFa.SelectedItem as CbBox;
 
             if (selectedFavorite != null) {
 

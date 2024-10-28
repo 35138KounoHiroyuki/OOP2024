@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,10 +18,18 @@ namespace CollorChecker {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
+    /// 
     public partial class MainWindow : Window {
         MyColor myColor;//現在指定している色情報
         public MainWindow() {
+            MyColor[] GetColorList() {
+                return typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static)
+                    .Select(i => new MyColor() { Color = (Color)i.GetValue(null), Name = i.Name }).ToArray();
+            }
             InitializeComponent();
+            //aチャンネルの初期値を設定（起動時すぐにボタンが押された場合の対応）
+          //  myColor.Color = Color.FromArgb(255, 0, 0, 0);
+            DataContext = GetColorList();
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
@@ -33,7 +42,9 @@ namespace CollorChecker {
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
-          //  stockList.Items.Insert(0,myColor);
+
+
+            //  stockList.Items.Insert(0,myColor );
 
             byte Red = (byte)rSlider.Value;
             byte Green = (byte)gSlider.Value;
@@ -44,13 +55,26 @@ namespace CollorChecker {
             };
             stockList.Items.Add(myColor);
 
-            
+
         }
 
         private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            if (stockList.SelectedItem is MyColor myColor1) {
-                colorArea.Background = new SolidColorBrush(myColor1.Color);
-            }
+            colorArea.Background = new SolidColorBrush(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
+            rSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.R;
+            gSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.G;
+            bSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.B;
+            //if (stockList.SelectedItem is MyColor myColor1) {
+            //    colorArea.Background = new SolidColorBrush(myColor1.Color);
+
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
+            var color = mycolor.Color;
+            var name = mycolor.Name;
+
         }
     }
 }
+
+
