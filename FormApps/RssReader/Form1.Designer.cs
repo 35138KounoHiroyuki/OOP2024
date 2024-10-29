@@ -28,7 +28,7 @@
             this.webView2 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.cbFa = new System.Windows.Forms.ComboBox();
             this.tbRssName = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btRegist = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.Delete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.webView2)).BeginInit();
@@ -82,14 +82,16 @@
             this.tbRssName.Size = new System.Drawing.Size(583, 19);
             this.tbRssName.TabIndex = 5;
             // 
-            // button1
+            // btRegist
             // 
-            this.button1.Location = new System.Drawing.Point(888, 50);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "登録";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btRegist.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btRegist.Location = new System.Drawing.Point(888, 50);
+            this.btRegist.Name = "btRegist";
+            this.btRegist.Size = new System.Drawing.Size(75, 23);
+            this.btRegist.TabIndex = 6;
+            this.btRegist.Text = "登録";
+            this.btRegist.UseVisualStyleBackColor = false;
+            this.btRegist.Click += new System.EventHandler(this.btRegist_Click_1);
             // 
             // textBox1
             // 
@@ -100,12 +102,14 @@
             // 
             // Delete
             // 
+            this.Delete.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.Delete.Location = new System.Drawing.Point(969, 50);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(75, 23);
             this.Delete.TabIndex = 7;
             this.Delete.Text = "消去";
-            this.Delete.UseVisualStyleBackColor = true;
+            this.Delete.UseVisualStyleBackColor = false;
+            this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
             // Form1
             // 
@@ -113,7 +117,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1094, 654);
             this.Controls.Add(this.Delete);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btRegist);
             this.Controls.Add(this.tbRssName);
             this.Controls.Add(this.cbFa);
             this.Controls.Add(this.webView2);
@@ -133,7 +137,7 @@
         private Microsoft.Web.WebView2.WinForms.WebView2 webView2;
         private System.Windows.Forms.ComboBox cbFa;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btRegist;
         private System.Windows.Forms.TextBox tbRssName;
         private System.Windows.Forms.Button Delete;
     }

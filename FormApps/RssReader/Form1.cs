@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using Microsoft.Web.WebView2.Core;
 using RssReader;
+
 //using Windows.UI.Xaml.Controls;
 
 
@@ -27,7 +28,7 @@ namespace RSSReader {
 
             InitializeComponent();
 
-        
+
         }
 
         private void btGet_Click(object sender, EventArgs e) {
@@ -193,9 +194,61 @@ namespace RSSReader {
 
         }
 
+        private void btRegist_Click_1(object sender, EventArgs e) {
+            if (string.IsNullOrWhiteSpace(cbFa.Text) || string.IsNullOrWhiteSpace(tbRssName.Text)) {
 
+                MessageBox.Show("URLまたは名称が入力されていません");
 
+            } else {
+
+                var newFavorite = new CbBox {
+
+                    Name = tbRssName.Text,
+
+                    Url = cbFa.Text
+
+                };
+
+                if (!cbFa.Items.OfType<CbBox>().Any(item => item.Name == newFavorite.Name && item.Url == newFavorite.Url)) {
+
+                    cbFa.Items.Add(newFavorite);
+
+                    MessageBox.Show("お気に入り登録完了");
+
+                } else {
+
+                    MessageBox.Show("同じ名前のアイテムがすでに登録されています");
+
+                }
+
+            }
+
+            inputItemsAllClear();
+
+        }
+
+        private void Delete_Click(object sender, EventArgs e) {
+            var selectedFavorite = cbFa.SelectedItem as CbBox;
+
+            if (selectedFavorite != null) {
+
+                var result = MessageBox.Show($"'{selectedFavorite.Name}' を削除しますか？", "削除確認", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes) {
+
+                    cbFa.Items.Remove(selectedFavorite);
+
+                    MessageBox.Show("お気に入りが削除されました");
+
+                }
+
+            } else {
+
+                MessageBox.Show("削除するお気に入りが選択されていません");
+
+            }
+        }
     }
-
 }
+
 

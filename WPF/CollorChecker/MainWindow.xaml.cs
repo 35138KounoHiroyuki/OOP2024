@@ -28,7 +28,7 @@ namespace CollorChecker {
             }
             InitializeComponent();
             //aチャンネルの初期値を設定（起動時すぐにボタンが押された場合の対応）
-          //  myColor.Color = Color.FromArgb(255, 0, 0, 0);
+            //myColor.Color = Color.FromArgb(255, 0, 0, 0);
             DataContext = GetColorList();
         }
 
@@ -38,40 +38,57 @@ namespace CollorChecker {
             byte Red = (byte)rSlider.Value;
             byte Green = (byte)gSlider.Value;
             byte Blue = (byte)bSlider.Value;
+            myColor.Name = null;
             colorArea.Background = new SolidColorBrush(Color.FromRgb(Red, Green, Blue));
+            
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
 
-
+            if (!stockList.Items.Contains((MyColor)myColor)) {
+                byte Red = (byte)rSlider.Value;
+                byte Green = (byte)gSlider.Value;
+                byte Blue = (byte)bSlider.Value;
+                MyColor myColor = new MyColor {
+                    Color = Color.FromRgb(Red, Green, Blue),
+                    Name = ToString()
+                };
+                stockList.Items.Add(myColor);
+               
+            } else {
+                MessageBox.Show("すでに登録済みです");
+            }
+        
             //  stockList.Items.Insert(0,myColor );
-
-            byte Red = (byte)rSlider.Value;
-            byte Green = (byte)gSlider.Value;
-            byte Blue = (byte)bSlider.Value;
-            MyColor myColor = new MyColor {
-                Color = Color.FromRgb(Red, Green, Blue),
-                Name = ToString()
-            };
-            stockList.Items.Add(myColor);
-
 
         }
 
         private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             colorArea.Background = new SolidColorBrush(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
-            rSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.R;
-            gSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.G;
-            bSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.B;
+            setSliderValue(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
+        }
+        private void setSliderValue(Color color) {
+            rSlider.Value= color.R; 
+            gSlider.Value= color.G;
+            bSlider.Value= color.B;
+        
+        
+        }
+            //rSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.R;
+            //gSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.G;
+            //bSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.B;
             //if (stockList.SelectedItem is MyColor myColor1) {
             //    colorArea.Background = new SolidColorBrush(myColor1.Color);
 
-        }
+        
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
-            var color = mycolor.Color;
-            var name = mycolor.Name;
+            var tmpmyColor= myColor = (MyColor)((ComboBox)sender).SelectedItem;
+            setSliderValue(myColor.Color);
+            myColor.Name= tmpmyColor.Name;
+            //var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
+            //var color = mycolor.Color;
+            //var name = mycolor.Name;
 
         }
     }
