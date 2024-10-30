@@ -20,78 +20,100 @@ namespace CollorChecker {
     /// </summary>
     /// 
     public partial class MainWindow : Window {
-        MyColor myColor;//現在指定している色情報
+        MyColor cureColor;//現在指定している色情報
         public MainWindow() {
-            MyColor[] GetColorList() {
-                return typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static)
-                    .Select(i => new MyColor() { Color = (Color)i.GetValue(null), Name = i.Name }).ToArray();
-            }
             InitializeComponent();
             //aチャンネルの初期値を設定（起動時すぐにボタンが押された場合の対応）
-            //myColor.Color = Color.FromArgb(255, 0, 0, 0);
+            cureColor.Color = Color.FromArgb(255, 0, 0, 0);
             DataContext = GetColorList();
+        }
+        private MyColor[] GetColorList() {
+            return typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static)
+                .Select(i => new MyColor() { Color = (Color)i.GetValue(null), Name = i.Name }).ToArray();
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            //myColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
-            //colorArea.Background = new SolidColorBrush(myColor.Color);
-            byte Red = (byte)rSlider.Value;
-            byte Green = (byte)gSlider.Value;
-            byte Blue = (byte)bSlider.Value;
-            myColor.Name = null;
-            colorArea.Background = new SolidColorBrush(Color.FromRgb(Red, Green, Blue));
+            cureColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
+            cureColor.Name = GetColorList().Where(c => c.Equals(cureColor))
+                                           .Select(c => c.Name)
+                                           .FirstOrDefault();
             
+            colorArea.Background = new SolidColorBrush(cureColor.Color);
+            //byte Red = (byte)rSlider.Value;
+            //byte Green = (byte)gSlider.Value;
+            //byte Blue = (byte)bSlider.Value;
+            //colorArea.Background = new SolidColorBrush(Color.FromRgb(Red, Green, Blue));
+
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
+         if (!stockList.Items.Contains((MyColor)cureColor)) {
+                stockList.Items.Insert(0, cureColor);
+                //byte Red = (byte)rSlider.Value;
+                //byte Green = (byte)gSlider.Value;
+                //byte Blue = (byte)bSlider.Value;
+                //MyColor myColor = new MyColor {
+                //    Color = Color.FromRgb(Red, Green, Blue),
+                //    Name = ToString()
+                //};
+                //stockList.Items.Add(myColor);
 
-            if (!stockList.Items.Contains((MyColor)myColor)) {
-                byte Red = (byte)rSlider.Value;
-                byte Green = (byte)gSlider.Value;
-                byte Blue = (byte)bSlider.Value;
-                MyColor myColor = new MyColor {
-                    Color = Color.FromRgb(Red, Green, Blue),
-                    Name = ToString()
-                };
-                stockList.Items.Add(myColor);
-               
             } else {
-                MessageBox.Show("すでに登録済みです");
+                MessageBox.Show("すでに登録済みです", "ColorChecker", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-        
-            //  stockList.Items.Insert(0,myColor );
 
         }
 
         private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            colorArea.Background = new SolidColorBrush(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
-            setSliderValue(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
+            if (stockList.SelectedIndex != -1) {
+                var selectetColor =(MyColor)stockList.SelectedItem;
+
+                colorArea.Background = new SolidColorBrush(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
+                setSliderValue(((MyColor)stockList.Items[stockList.SelectedIndex]).Color);
+            }
         }
         private void setSliderValue(Color color) {
-            rSlider.Value= color.R; 
-            gSlider.Value= color.G;
-            bSlider.Value= color.B;
-        
-        
+            rSlider.Value = color.R;
+            gSlider.Value = color.G;
+            bSlider.Value = color.B;
+
+
         }
-            //rSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.R;
-            //gSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.G;
-            //bSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.B;
-            //if (stockList.SelectedItem is MyColor myColor1) {
-            //    colorArea.Background = new SolidColorBrush(myColor1.Color);
+        //rSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.R;
+        //gSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.G;
+        //bSlider.Value = ((MyColor)stockList.Items[stockList.SelectedIndex]).Color.B;
+        //if (stockList.SelectedItem is MyColor myColor1) {
+        //    colorArea.Background = new SolidColorBrush(myColor1.Color);
 
-        
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            var tmpmyColor= myColor = (MyColor)((ComboBox)sender).SelectedItem;
-            setSliderValue(myColor.Color);
-            myColor.Name= tmpmyColor.Name;
+
+        private void ColorCombBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var tmpMyColor = cureColor = (MyColor)((ComboBox)sender).SelectedItem;
+            setSliderValue(tmpMyColor.Color);
+            cureColor.Name = tmpMyColor.Name;
             //var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
             //var color = mycolor.Color;
             //var name = mycolor.Name;
 
         }
+
+        private void btDelete_Click(object sender, RoutedEventArgs e) {
+            // 選択されているアイテムを削除
+            if (stockList.SelectedItem != null) {
+
+                var result = MessageBox.Show("選択したアイテムを削除しますか？", "確認", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes) {
+                    stockList.Items.Remove(stockList.SelectedItem);
+                    // 選択をクリア
+                    stockList.SelectedItem = -1;
+                }
+            } else {
+                MessageBox.Show("削除するアイテムを選択してください。", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
 }
+
 
 

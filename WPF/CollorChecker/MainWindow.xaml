@@ -41,7 +41,7 @@
             <Slider x:Name="bSlider" Grid.Column="1" HorizontalAlignment="Center" Margin="0,14,0,0" Grid.Row="2" VerticalAlignment="Top" Width="120" ValueChanged="Slider_ValueChanged" Maximum="255"/>
             <TextBox x:Name="bValue" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Text="{Binding ElementName=bSlider,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="46" Height="37" Margin="0,15,0,0" FontSize="20"/>
             <!--コンボボックス-->
-            <ComboBox ItemsSource="{Binding}" SelectedValue="{Binding Color}" Margin="0,21,0,0" Height="24" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Center" Width="134" Grid.Column="1" Grid.Row="3" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBox x:Name="ColorCombBox" ItemsSource="{Binding}" SelectedValue="{Binding Color}" Margin="0,21,0,0" Height="24" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Center" Width="134" Grid.Column="1" Grid.Row="3" SelectionChanged="ColorCombBox_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -62,8 +62,9 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="stockButton" Content="STOCK" HorizontalAlignment="Center" VerticalAlignment="Center" Width="213" Height="36" FontSize="20" BorderBrush="#FF00C8E2" Background="#FFD285D2" Click="stockButton_Click"/>
+            <Button x:Name="stockButton" Content="STOCK" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Height="46" FontSize="20" BorderBrush="#FF00C8E2" Background="#FFD285D2" Click="stockButton_Click" Margin="10,7,0,0"/>
             <ListBox x:Name="stockList" Grid.Row="1" Margin="10" Background="#FFA8E2E4" ItemStringFormat="" FontFamily="MS Gothic" SelectionChanged="stockList_SelectionChanged"/>
+            <Button x:Name="btDelete" Content="DELETE" HorizontalAlignment="Left" Margin="173,15,0,0" VerticalAlignment="Top" Width="60" Height="30" Click="btDelete_Click"/>
         </Grid>
 
 
