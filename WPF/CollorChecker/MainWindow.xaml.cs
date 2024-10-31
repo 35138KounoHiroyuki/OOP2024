@@ -21,11 +21,12 @@ namespace CollorChecker {
     /// 
     public partial class MainWindow : Window {
         MyColor cureColor;//現在指定している色情報
+        MyColor[]colorsTable;
         public MainWindow() {
             InitializeComponent();
             //aチャンネルの初期値を設定（起動時すぐにボタンが押された場合の対応）
             cureColor.Color = Color.FromArgb(255, 0, 0, 0);
-            DataContext = GetColorList();
+            DataContext = colorsTable = GetColorList();
         }
         private MyColor[] GetColorList() {
             return typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static)
@@ -34,10 +35,17 @@ namespace CollorChecker {
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             cureColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
-            cureColor.Name = GetColorList().Where(c => c.Equals(cureColor))
-                                           .Select(c => c.Name)
-                                           .FirstOrDefault();
-            
+            cureColor.Name = colorsTable.Where(c => c.Equals(cureColor.Color))
+                                          .Select(x => x.Name)
+                                          .FirstOrDefault();
+            int i;
+            for (i = 0; i < colorsTable.Length; i++) {
+                if (colorsTable[i].Color.Equals(cureColor.Color)) {
+                    cureColor.Name= colorsTable[i].Name;
+                    break;
+                }
+            }
+            ColorCombBox.SelectedIndex = i;
             colorArea.Background = new SolidColorBrush(cureColor.Color);
             //byte Red = (byte)rSlider.Value;
             //byte Green = (byte)gSlider.Value;
@@ -47,7 +55,8 @@ namespace CollorChecker {
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
-         if (!stockList.Items.Contains((MyColor)cureColor)) {
+           
+            if (!stockList.Items.Contains((MyColor)cureColor)) {
                 stockList.Items.Insert(0, cureColor);
                 //byte Red = (byte)rSlider.Value;
                 //byte Green = (byte)gSlider.Value;
