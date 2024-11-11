@@ -1,0 +1,35 @@
+﻿<Window x:Class="VisibilityConveter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VisibilityConveter"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="250" Width="300">
+    <Window.Resources>
+        <SolidColorBrush x:Key="ButtonBrushKey" Color="Aqua"/>
+    </Window.Resources>
+    <StackPanel>
+        <StackPanel.Resources>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <SolidColorBrush x:Key="ButtonBrushKey" Color="LightPink"/>
+        </StackPanel.Resources>
+
+        <CheckBox x:Name="CheckBox" Content="設定大項目" Checked="CheckBox_Checked"/>
+        <StackPanel Visibility="{Binding IsChecked,ElementName=CheckBox,
+                                   Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Margin="20,0,0,0">
+            <RadioButton x:Name="rRadioButton" Content="赤"/>
+            <RadioButton  Content="青"/>
+            <RadioButton  Content="緑"/>
+        </StackPanel>
+
+        <Button Margin="10" Content="ボタン1" Background="#FF88A0FF"/>
+        <Button Margin="10" Content="ボタン2" Background="#FF8688FF"/>
+        <Button Margin="10" Content="ボタン3" Background="#FFFFC9C9" >
+            <Button.Resources>
+                <SolidColorBrush x:Key="WhiteBrushKey" Color="BlueViolet"/>
+            </Button.Resources>
+        </Button>
+    </StackPanel>
+</Window>
