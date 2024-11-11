@@ -23,10 +23,15 @@ namespace VisibilityConveter {
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e) {
-            if (rRadioButton = checked){
+            if (rRadioButton.IsChecked == true) {
                 Resources["ボタン1"] = new SolidColorBrush(Colors.Red);
-
-            
+            }
+            if (rRadioButton.IsChecked == true) {
+                Resources["ボタン2"] = new SolidColorBrush(Colors.Blue);
+            }
+            if (rRadioButton.IsChecked == true) {
+                Resources["ボタン3"] = new SolidColorBrush(Colors.Green);
+            }
         }
 
          //private void Button_Click(object sender, RoutedEventArgs e) {

@@ -8,6 +8,7 @@
         Title="MainWindow" Height="250" Width="300">
     <Window.Resources>
         <SolidColorBrush x:Key="ButtonBrushKey" Color="Aqua"/>
+        
     </Window.Resources>
     <StackPanel>
         <StackPanel.Resources>
@@ -23,7 +24,7 @@
             <RadioButton  Content="青"/>
             <RadioButton  Content="緑"/>
         </StackPanel>
-
+       
         <Button Margin="10" Content="ボタン1" Background="#FF88A0FF"/>
         <Button Margin="10" Content="ボタン2" Background="#FF8688FF"/>
         <Button Margin="10" Content="ボタン3" Background="#FFFFC9C9" >
