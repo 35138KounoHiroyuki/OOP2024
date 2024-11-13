@@ -7,30 +7,60 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="250" Width="300">
     <Window.Resources>
-        <SolidColorBrush x:Key="ButtonBrushKey" Color="Aqua"/>
+        <DataTemplate DataType="{x:Type local:ColorViewMdel}">
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Width="12" Height="12">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding Color}">
+                           
+                        </SolidColorBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Margin="2" Text="{Binding Name}"/>
+            </StackPanel>
+         </DataTemplate>
+
+
+
+
+            <Style x:Key="EllopseButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse Fill="{TemplateBinding Background}"/>
+                            <ContentPresenter
+                                 Margin="{TemplateBinding Padding}"
+                                 RecognizesAccessKey="True"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
         
     </Window.Resources>
     <StackPanel>
         <StackPanel.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-            <SolidColorBrush x:Key="ButtonBrushKey" Color="LightPink"/>
+           
         </StackPanel.Resources>
 
-        <CheckBox x:Name="CheckBox" Content="設定大項目" Checked="CheckBox_Checked"/>
+        <CheckBox x:Name="CheckBox" Content="設定大項目" IsChecked="False"/>
         <StackPanel Visibility="{Binding IsChecked,ElementName=CheckBox,
                                    Converter={StaticResource BooleanToVisibilityConverter}}"
                     Margin="20,0,0,0">
-            <RadioButton x:Name="rRadioButton" Content="赤"/>
-            <RadioButton  Content="青"/>
-            <RadioButton  Content="緑"/>
+            <RadioButton  Content="赤" Click="RadioButtonClick"/>
+            <RadioButton  Content="青" Click="RadioButtonClick"/>
+            <RadioButton  Content="緑" Click="RadioButtonClick"/>
         </StackPanel>
-       
-        <Button Margin="10" Content="ボタン1" Background="#FF88A0FF"/>
-        <Button Margin="10" Content="ボタン2" Background="#FF8688FF"/>
-        <Button Margin="10" Content="ボタン3" Background="#FFFFC9C9" >
-            <Button.Resources>
-                <SolidColorBrush x:Key="WhiteBrushKey" Color="BlueViolet"/>
-            </Button.Resources>
-        </Button>
+
+        <Button  Style="{StaticResource EllopseButton}"
+                Content="ボタン１" Background="Gray" Click="RadioButton_Click"/>
+        <Button  Style="{StaticResource EllopseButton}"  Padding="12"  
+                 Content="ボタン２" Background="LightBlue"/>
+        <ComboBox ItemsSource="{x:Static local:ColorViewModel.ColorList}"/>
     </StackPanel>
 </Window>
