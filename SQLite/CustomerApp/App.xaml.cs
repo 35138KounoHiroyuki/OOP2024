@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace CollorChecker {
+namespace CustomerApp {
     /// <summary>
     /// App.xaml の相互作用ロジック
     /// </summary>
@@ -14,6 +14,5 @@ namespace CollorChecker {
         static string databaseName = "Shop.db";
         static string folderPass = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public static string databasePass = System.IO.Path.Combine(folderPass, databaseName);
-
     }
 }
