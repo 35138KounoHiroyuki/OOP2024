@@ -42,7 +42,7 @@ namespace CustomerApp {
 
         }
 
-        private void ReadButton_Click(object sender, RoutedEventArgs e) {
+        private void UpdateButton_Click(object sender, RoutedEventArgs e) {
           
 
         }
@@ -75,7 +75,17 @@ namespace CustomerApp {
 
                ReadDatabase();//ListView表示
             }
+          
+            }
 
+        private void CustomerListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var selectedCustomer = CustomerListView.SelectedItem as Customer;
+            if (selectedCustomer != null) {
+                // 顧客情報をテキストボックスに表示
+                NameTextBox.Text = selectedCustomer.Name;
+                PhoneTextBox.Text = selectedCustomer.Phone;
+                AddressTextBox.Text = selectedCustomer.Address;
+            }
         }
     }
 }
