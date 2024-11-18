@@ -43,9 +43,24 @@ namespace CustomerApp {
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e) {
-          
+            var item = CustomerListView.SelectedItem as Customer;
+            using (var connection = new SQLiteConnection(App.databasePass)) {
+                connection.CreateTable<Customer>();
+                connection.Delete(item);
+             }
+            var customer = new Customer() {
+                Name = NameTextBox.Text,
+                Phone = PhoneTextBox.Text,
+                Address = AddressTextBox.Text,
+            };
 
-        }
+            using (var connection = new SQLiteConnection(App.databasePass)) {
+                connection.CreateTable<Customer>();
+                connection.Insert(customer);
+            }
+            ReadDatabase();//ListView表示
+        
+    }
 
         private void ReadDatabase() {
             using (var connection = new SQLiteConnection(App.databasePass)) {
