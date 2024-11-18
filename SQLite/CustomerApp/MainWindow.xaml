@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomerApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="300">
+        Title="MainWindow" Height="509" Width="500">
+
     <Grid d:IsLocked="True">
         <StackPanel Margin="10">
             <Grid>
@@ -27,12 +28,12 @@
                 <TextBlock Text="住所" Grid.Row="2" Grid.Column="0"/>
                 <TextBox x:Name="AddressTextBox" Grid.Row="3" Grid.Column="1"/>
             </Grid>
-
-            <Button Content="Save" x:Name="SaveButton" Click="SaveButton_Click"/>
-            <Button Content="Delete" x:Name="DeleteButton" Click="DeleteButton_Click"/>
-            <Button Content="Update" x:Name="UpdateButton" Click="UpdateButton_Click"/>
+                       
+            <Button Content="Save" x:Name="SaveButton" Click="SaveButton_Click" HorizontalAlignment="Right" Width="100"/>
+            <Button Content="Delete" x:Name="DeleteButton" Click="DeleteButton_Click" HorizontalAlignment="Right" Width="100"/>
+            <Button Content="Update" x:Name="UpdateButton" Click="UpdateButton_Click" HorizontalAlignment="Right" Width="100"/>
+            <Button Content="開く" x:Name="Open" Click="UpdateButton_Click" Width="100"/>
             <TextBox x:Name="SerchTextBox" FontSize="20" TextChanged="SerchTextBox_TextChanged"/>
-
 
             <ListView x:Name="CustomerListView" Margin="0,5,0,0" Height="300" SelectionChanged="CustomerListView_SelectionChanged">
                 <ListView.ItemTemplate>
@@ -50,4 +51,5 @@
         </StackPanel>
 
     </Grid>
+
 </Window>
