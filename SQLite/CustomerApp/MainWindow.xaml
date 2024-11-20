@@ -26,6 +26,7 @@
         <Button Content="Update" x:Name="UpdateButton" Click="UpdateButton_Click" Canvas.Left="469" Canvas.Top="224" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Height="37"/>
         <Button Content="開く" x:Name="Open" Click="Open_Click" Canvas.Left="404" Canvas.Top="140" Width="57" HorizontalAlignment="Center" VerticalAlignment="Top" Height="77"/>
         <Button Content="削除" x:Name="Delete" Click="Delete_Click" Canvas.Left="404" Canvas.Top="224" HorizontalAlignment="Center" VerticalAlignment="Top" Width="60" Height="37"/>
+        <Button x:Name="Clear" Content="項目クリア" Canvas.Left="438" Canvas.Top="107" HorizontalAlignment="Center" VerticalAlignment="Top" Width="98" Height="26" Click="Clear_Click"/>
         <!-- 検索 -->
         <TextBox x:Name="SerchTextBox" TextChanged="SerchTextBox_TextChanged" FontSize="20" Canvas.Left="22" Canvas.Top="266" Width="547" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
@@ -43,6 +44,7 @@
             </ListView.ItemTemplate>
         </ListView>
         <Image x:Name="ImageControl" Height="185" Canvas.Left="25" Canvas.Top="78" Width="355" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        
     </Canvas>
 
 </Window>

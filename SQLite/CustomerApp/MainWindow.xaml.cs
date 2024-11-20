@@ -24,7 +24,7 @@ namespace CustomerApp {
         List<Customer> _customers;
         public MainWindow() {
             InitializeComponent();
-        　　ReadDatabase();
+            ReadDatabase();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e) {
@@ -35,13 +35,13 @@ namespace CustomerApp {
                 Address = AddressTextBox.Text,
                 ImagePath = imagePath,
             };
-          
+
             using (var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
                 connection.Insert(customer);
             }
             ReadDatabase();//ListView表示
-
+            
 
         }
 
@@ -50,7 +50,7 @@ namespace CustomerApp {
             using (var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
                 connection.Delete(item);
-             }
+            }
             var customer = new Customer() {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
@@ -62,8 +62,8 @@ namespace CustomerApp {
                 connection.Insert(customer);
             }
             ReadDatabase();//ListView表示
-        
-    }
+
+        }
 
         private void ReadDatabase() {
             using (var connection = new SQLiteConnection(App.databasePass)) {
@@ -76,13 +76,13 @@ namespace CustomerApp {
         }
 
         private void SerchTextBox_TextChanged(object sender, TextChangedEventArgs e) {
-            var filterList =_customers.Where(x=>x.Name.Contains(SerchTextBox.Text)).ToList();
+            var filterList = _customers.Where(x => x.Name.Contains(SerchTextBox.Text)).ToList();
             CustomerListView.ItemsSource = filterList;
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e) {
             var item = CustomerListView.SelectedItem as Customer;
-            if(item == null) {
+            if (item == null) {
                 MessageBox.Show("削除する行を選択してください");
                 return;
             }
@@ -91,10 +91,10 @@ namespace CustomerApp {
                 connection.Delete(item);
 
 
-               ReadDatabase();//ListView表示
+                ReadDatabase();//ListView表示
             }
-          
-            }
+
+        }
 
         private void CustomerListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             var selectedCustomer = CustomerListView.SelectedItem as Customer;
@@ -104,11 +104,12 @@ namespace CustomerApp {
                 PhoneTextBox.Text = selectedCustomer.Phone;
                 AddressTextBox.Text = selectedCustomer.Address;
                 // 画像パスがあれば画像を表示
-                if (!string.IsNullOrEmpty(selectedCustomer.ImagePath)) {
+                if (string.IsNullOrEmpty(selectedCustomer.ImagePath)) {
                     ImageControl.Source = new BitmapImage(new Uri(selectedCustomer.ImagePath));
                 } else {
                     ImageControl.Source = null;
                 }
+               
             }
         }
 
@@ -128,6 +129,16 @@ namespace CustomerApp {
         private void Delete_Click(object sender, RoutedEventArgs e) {
             ImageControl.Source = null;
         }
-        
+        private void inputItemsAllClear() {
+            NameTextBox.Text = "";
+            PhoneTextBox.Text = "";
+            AddressTextBox.Text = "";
+            SerchTextBox.Text = "";
+            ImageControl = null;
+        }
+
+        private void Clear_Click(object sender, RoutedEventArgs e) {
+            inputItemsAllClear();
+        }
     }
 }
