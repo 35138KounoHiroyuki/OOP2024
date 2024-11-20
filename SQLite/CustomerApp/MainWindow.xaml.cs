@@ -28,10 +28,12 @@ namespace CustomerApp {
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e) {
+            var imagePath = (ImageControl.Source as BitmapImage)?.UriSource.ToString();
             var customer = new Customer() {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
                 Address = AddressTextBox.Text,
+                ImagePath = imagePath,
             };
           
             using (var connection = new SQLiteConnection(App.databasePass)) {
@@ -101,6 +103,12 @@ namespace CustomerApp {
                 NameTextBox.Text = selectedCustomer.Name;
                 PhoneTextBox.Text = selectedCustomer.Phone;
                 AddressTextBox.Text = selectedCustomer.Address;
+                // 画像パスがあれば画像を表示
+                if (!string.IsNullOrEmpty(selectedCustomer.ImagePath)) {
+                    ImageControl.Source = new BitmapImage(new Uri(selectedCustomer.ImagePath));
+                } else {
+                    ImageControl.Source = null;
+                }
             }
         }
 
@@ -120,6 +128,6 @@ namespace CustomerApp {
         private void Delete_Click(object sender, RoutedEventArgs e) {
             ImageControl.Source = null;
         }
-       
+        
     }
 }
