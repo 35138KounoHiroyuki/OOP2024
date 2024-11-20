@@ -5,51 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomerApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="509" Width="500">
+        Title="MainWindow" Height="600" Width="600">
 
-    <Grid d:IsLocked="True">
-        <StackPanel Margin="10">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width=" 8*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="名前" Grid.Row="0" Grid.Column="0"/>
-                <TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" />
+    <Canvas Margin="0,0,0,-16">
+        <!-- 名前入力 -->
+        <TextBlock Text="名前" Canvas.Left="10" Canvas.Top="10"/>
+        <TextBox x:Name="NameTextBox" Canvas.Left="79" Canvas.Top="9" Width="466" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18"/>
 
-                <TextBlock Text="電話番号" Grid.Row="1" Grid.Column="0"/>
-                <TextBox x:Name="PhoneTextBox" Grid.Row="1" Grid.Column="1"/>
+        <!-- 電話番号入力 -->
+        <TextBlock Text="電話番号" Canvas.Left="10" Canvas.Top="34" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBox x:Name="PhoneTextBox" Canvas.Left="79" Canvas.Top="32" Width="466" HorizontalAlignment="Left" Height="18" VerticalAlignment="Center"/>
 
-                <TextBlock Text="住所" Grid.Row="2" Grid.Column="0"/>
-                <TextBox x:Name="AddressTextBox" Grid.Row="3" Grid.Column="1"/>
-            </Grid>
-                       
-            <Button Content="Save" x:Name="SaveButton" Click="SaveButton_Click" HorizontalAlignment="Right" Width="100"/>
-            <Button Content="Delete" x:Name="DeleteButton" Click="DeleteButton_Click" HorizontalAlignment="Right" Width="100"/>
-            <Button Content="Update" x:Name="UpdateButton" Click="UpdateButton_Click" HorizontalAlignment="Right" Width="100"/>
-            <Button Content="開く" x:Name="Open" Click="UpdateButton_Click" Width="100"/>
-            <TextBox x:Name="SerchTextBox" FontSize="20" TextChanged="SerchTextBox_TextChanged"/>
+        <!-- 住所入力 -->
+        <TextBlock Text="住所" Canvas.Left="10" Canvas.Top="55" RenderTransformOrigin="0.785,-1.128" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBox x:Name="AddressTextBox" Canvas.Left="79" Canvas.Top="55" Width="466" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-            <ListView x:Name="CustomerListView" Margin="0,5,0,0" Height="300" SelectionChanged="CustomerListView_SelectionChanged">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel >
-                            <TextBlock Text="{Binding id}"/>
-                            <TextBlock Text="{Binding Name}" FontSize="20"/>
-                            <TextBlock Text="{Binding Phone}" Foreground="Blue"/>
-                            <TextBlock Text="{Binding Address}" Foreground="Red"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+        <!-- ボタン -->
+        <Button Content="Save" x:Name="SaveButton" Click="SaveButton_Click" Canvas.Left="469" Canvas.Top="140" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Height="37"/>
+        <Button Content="Delete" x:Name="DeleteButton" Click="DeleteButton_Click" Canvas.Left="469" Canvas.Top="182" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Height="37"/>
+        <Button Content="Update" x:Name="UpdateButton" Click="UpdateButton_Click" Canvas.Left="469" Canvas.Top="224" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Height="37"/>
+        <Button Content="開く" x:Name="Open" Click="Open_Click" Canvas.Left="404" Canvas.Top="140" Width="57" HorizontalAlignment="Center" VerticalAlignment="Top" Height="77"/>
+        <Button Content="削除" x:Name="Delete" Click="Delete_Click" Canvas.Left="404" Canvas.Top="224" HorizontalAlignment="Center" VerticalAlignment="Top" Width="60" Height="37"/>
+        <!-- 検索 -->
+        <TextBox x:Name="SerchTextBox" TextChanged="SerchTextBox_TextChanged" FontSize="20" Canvas.Left="22" Canvas.Top="266" Width="547" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-        </StackPanel>
-
-    </Grid>
+        <!-- 顧客リスト -->
+        <ListView x:Name="CustomerListView" SelectionChanged="CustomerListView_SelectionChanged" Canvas.Left="22" Canvas.Top="300" Width="547" Height="271" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding id}"/>
+                        <TextBlock Text="{Binding Name}" FontSize="20"/>
+                        <TextBlock Text="{Binding Phone}" Foreground="Blue"/>
+                        <TextBlock Text="{Binding Address}" Foreground="Red"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Image x:Name="ImageControl" Height="185" Canvas.Left="25" Canvas.Top="78" Width="355" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+    </Canvas>
 
 </Window>

@@ -1,4 +1,5 @@
 ﻿using CustomerApp.Objects;
+using Microsoft.Win32;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -102,5 +103,23 @@ namespace CustomerApp {
                 AddressTextBox.Text = selectedCustomer.Address;
             }
         }
+
+        private void Open_Click(object sender, RoutedEventArgs e) {
+            // OpenFileDialogを使ってファイル選択ダイアログを表示
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";  // 画像ファイルのみフィルタリング
+            if (openFileDialog.ShowDialog() == true) {
+                string filePath = openFileDialog.FileName;
+
+                // 画像をImageコントロールに表示
+                ImageControl.Source = new BitmapImage(new Uri(filePath));
+            }
+
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e) {
+            ImageControl.Source = null;
+        }
+       
     }
 }
