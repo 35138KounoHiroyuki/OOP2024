@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomerApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="600">
+        Title="MainWindow" Height="650" Width="600">
 
-    <Canvas Margin="0,0,0,-16">
+    <Canvas Margin="0,0,94,57">
         <!-- 名前入力 -->
         <TextBlock Text="名前" Canvas.Left="10" Canvas.Top="10"/>
         <TextBox x:Name="NameTextBox" Canvas.Left="79" Canvas.Top="9" Width="466" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18"/>
@@ -21,7 +21,7 @@
         <TextBox x:Name="AddressTextBox" Canvas.Left="79" Canvas.Top="55" Width="466" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         <!-- ボタン -->
-        <Button Content="Save" x:Name="SaveButton" Click="SaveButton_Click" Canvas.Left="469" Canvas.Top="140" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Height="37"/>
+        <Button Content="Regit" x:Name="SaveButton" Click="SaveButton_Click" Canvas.Left="469" Canvas.Top="140" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Height="37"/>
         <Button Content="Delete" x:Name="DeleteButton" Click="DeleteButton_Click" Canvas.Left="469" Canvas.Top="182" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Height="37"/>
         <Button Content="Update" x:Name="UpdateButton" Click="UpdateButton_Click" Canvas.Left="469" Canvas.Top="224" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Height="37"/>
         <Button Content="開く" x:Name="Open" Click="Open_Click" Canvas.Left="404" Canvas.Top="140" Width="57" HorizontalAlignment="Center" VerticalAlignment="Top" Height="77"/>
@@ -32,16 +32,27 @@
 
         <!-- 顧客リスト -->
         <ListView x:Name="CustomerListView" SelectionChanged="CustomerListView_SelectionChanged" Canvas.Left="22" Canvas.Top="300" Width="547" Height="271" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding id}"/>
-                        <TextBlock Text="{Binding Name}" FontSize="20"/>
-                        <TextBlock Text="{Binding Phone}" Foreground="Blue"/>
-                        <TextBlock Text="{Binding Address}" Foreground="Red"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+        <ListView.View>
+        <GridView>
+                <!-- 顧客ID列 -->
+                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}" Width="50"/>
+                <!-- 名前列 -->
+                <GridViewColumn Header="名前" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                <!-- 電話番号列 -->
+                <GridViewColumn Header="電話番号" DisplayMemberBinding="{Binding Phone}" Width="120"/>
+                <!-- 住所列 -->
+                <GridViewColumn Header="住所" DisplayMemberBinding="{Binding Address}" Width="150"/>
+                    <!-- 画像列 -->
+                    <GridViewColumn Header="画像" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <!-- 画像の表示 -->
+                                <Image Width="50" Height="50" Source="{Binding ImageData}" Stretch="UniformToFill"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
         </ListView>
         <Image x:Name="ImageControl" Height="185" Canvas.Left="25" Canvas.Top="78" Width="355" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         

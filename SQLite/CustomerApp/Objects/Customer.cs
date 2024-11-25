@@ -25,7 +25,10 @@ namespace CustomerApp.Objects {
         /// <summary>
         /// 画像
         /// </summary>
-　　　　public string ImagePath { get; set; }
+　　　　public byte[] ImageData { get; set; }
+
+        // 顧客登録の順番を管理する
+        public int Order { get; set; }
 
         public override string ToString() {
             return $"{Id}  {Name}  {Phone}  {Address}";
