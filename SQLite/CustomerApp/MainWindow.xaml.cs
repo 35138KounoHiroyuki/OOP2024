@@ -46,7 +46,7 @@ namespace CustomerApp {
                 return; // 名前が未入力の場合、登録処理を終了
             }
 
-            // var    imagePath = (ImageControl.Source as BitmapImage)?.UriSource.ToString();
+            // var    imagePath = (ImageContro.Source as BitmapImage)?.UriSource.ToString();
             byte[] imageData = null;
             if (ImageControl.Source != null) {
                 // ImageControl から BitmapImage を取得し、バイト配列に変換
